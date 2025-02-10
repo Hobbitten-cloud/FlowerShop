@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlowerShop.Views.CodeBehind"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="207" Width="407" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="LoginWindow" Height="207" Width="407" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="ForestGreen">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
