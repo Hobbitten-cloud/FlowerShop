@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlowerShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,8 @@ namespace FlowerShop.Views.CodeBehind
     /// </summary>
     public partial class StorageCreateWindow : Window
     {
+        internal ProductViewModel productViewModel;
+
         public StorageCreateWindow()
         {
             InitializeComponent();
