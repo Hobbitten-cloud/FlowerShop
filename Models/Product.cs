@@ -10,21 +10,13 @@ namespace FlowerShop.Models
     {
         // Properties below
         public string PicturePath { get; set; }
-        public string ForSale { get; set; }
         public string ProductName { get; set; }
+        public string Price { get; set; }
         public string Size { get; set; }
-        public double Weight { get; set; }
         public string Location { get; set; }
-        public double SalePriceWithCom { get; set; }
-        public double SalePriceWithoutCom { get; set; }
-        public double BuyPriceWithCom { get; set; }
-        public double BuyPriceWithoutCom { get; set; }
-        public int Sold { get; set; }
-        public int QuantityInStock { get; set; }
 
         // A static integer that constantly increases whenever a new product is created
         private static int idCount = 0;
-
 
         // Id to identify what number a specific product is
         public int Id { get; set; }
@@ -38,9 +30,7 @@ namespace FlowerShop.Models
 
         public override string ToString()
         {
-            return $"{Id}: {PicturePath}: {ForSale}: {ProductName}: {Size}: {Weight}: {Location}:" +
-                $"{SalePriceWithCom}: {SalePriceWithoutCom}:" +
-                $"{BuyPriceWithCom}: {BuyPriceWithoutCom}: {Sold}: {QuantityInStock}:";
+            return $"{Id}: {PicturePath}: {ProductName}: {Size}: {Location}:";
         }
     }
 }
