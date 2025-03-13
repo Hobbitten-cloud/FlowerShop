@@ -25,6 +25,9 @@ namespace FlowerShop.ViewModels
         // Constructor of our MainViewModel
         public LoginViewModel()
         {
+            // Calls our function to retrieve all users from the database
+            employeeRepo.GetAll();
+
             foreach (Employee employee in employeeRepo.GetEmployeeList())
             {
                 employeeViewModels.Add(new EmployeeViewModel(employee));
