@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowerShop.Persistens
+namespace FlowerShop.Persistence
 {
     public class EmployeeRepo
     {
@@ -30,7 +30,7 @@ namespace FlowerShop.Persistens
         {
             List<Employee> employees = new List<Employee>();
 
-            // Retrieves all of our Owners and addes them to our list
+            // Retrieves all of our Employees and addes them to our list
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();

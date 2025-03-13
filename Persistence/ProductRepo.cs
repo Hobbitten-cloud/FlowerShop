@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowerShop.Persistens
+namespace FlowerShop.Persistence
 {
     public class ProductRepo
     {
