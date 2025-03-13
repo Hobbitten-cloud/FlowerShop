@@ -18,10 +18,10 @@ namespace FlowerShop.ViewModels.Commands
 
         public void Execute(object? parameter) // What the button does when clicked on
         {
-            if (parameter is StorageViewModel svm)
-            {
-                svm.AddDefaultProduct();
-            }
+            //if (parameter is StorageViewModel svm)
+            //{
+            //    svm.AddDefaultProduct();
+            //}
         }
     }
 }

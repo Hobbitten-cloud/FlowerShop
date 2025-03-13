@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlowerShop.Views.CodeBehind"
         mc:Ignorable="d"
-        Title="StorageCreateWindow" Height="450" Width="800" Background="ForestGreen">
+        Title="StorageCreateWindow" Height="450" Width="800" Background="ForestGreen" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label FontSize="30" FontWeight="Bold" Content="Oprettelse af Produkt" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 

@@ -56,6 +56,7 @@ namespace FlowerShop.ViewModels.Commands
                         ShowInTaskbar = false,
                         Owner = null
                     };
+                    // Opens the storage window
                     storageWindow.ShowDialog();
                 }
             }

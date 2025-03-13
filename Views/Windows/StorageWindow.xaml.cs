@@ -2,7 +2,9 @@
 using FlowerShop.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +26,20 @@ namespace FlowerShop.Views.CodeBehind
         public StorageWindow()
         {
             InitializeComponent();
+        }
+
+        private void CreateButton(object sender, RoutedEventArgs e)
+        {
+            // Opens the storage window for creating the product
+            StorageCreateWindow storageCreateWindow = new StorageCreateWindow()
+            {
+                Title = "StorageCreate",
+                Topmost = true,
+                ResizeMode = ResizeMode.NoResize,
+                ShowInTaskbar = true,
+                Owner = null
+            };
+            storageCreateWindow.ShowDialog();
         }
     }
 }

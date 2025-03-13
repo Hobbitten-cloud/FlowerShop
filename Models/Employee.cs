@@ -8,15 +8,17 @@ namespace FlowerShop.Models
 {
     public class Employee
     {
-        public string Name { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public Employee(string name, string username, string password)
-        {
+        public int EmployeeId { get; set; }
 
-            Name = name;
-            Username = username;
-            Password = password;
+        public string Name { get; set; }
+
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public Employee(int employeeId)
+        {
+            EmployeeId = employeeId;
         }
     }
 }
