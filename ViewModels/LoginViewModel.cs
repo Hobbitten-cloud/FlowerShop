@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace FlowerShop.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel
     {
         // Command binds the loginCmd to the LoginCommand class
         public ICommand LoginCmd { get; } = new LoginCommand();
@@ -19,12 +19,15 @@ namespace FlowerShop.ViewModels
         public string Password { get; set; }
 
         // Employee list
-        EmployeeRepo employeeRepo = new EmployeeRepo();
+        public EmployeeRepo employeeRepo = new EmployeeRepo();
         public List<EmployeeViewModel> employeeViewModels = new List<EmployeeViewModel>();
 
         // Constructor of our MainViewModel
         public LoginViewModel()
         {
+            // Calls our function to retrieve all users from the database
+            employeeRepo.GetAll();
+
             foreach (Employee employee in employeeRepo.GetEmployeeList())
             {
                 employeeViewModels.Add(new EmployeeViewModel(employee));
@@ -42,17 +45,6 @@ namespace FlowerShop.ViewModels
                 }
             }
             return null;
-        }
-
-        // Property event
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if (propertyChanged != null)
-            {
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
     }
 }

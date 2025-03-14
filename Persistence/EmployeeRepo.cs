@@ -11,7 +11,7 @@ namespace FlowerShop.Persistence
 {
     public class EmployeeRepo
     {
-        private List<Employee> employee = new List<Employee>();
+        private List<Employee> employees = new List<Employee>();
 
         // Reads the database
         private readonly string ConnectionString;
@@ -28,8 +28,6 @@ namespace FlowerShop.Persistence
 
         public List<Employee> GetAll()
         {
-            List<Employee> employees = new List<Employee>();
-
             // Retrieves all of our Employees and addes them to our list
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -55,7 +53,7 @@ namespace FlowerShop.Persistence
         // Returns the employee list
         public List<Employee> GetEmployeeList()
         {
-            return employee;
+            return employees;
         }
 
     }
