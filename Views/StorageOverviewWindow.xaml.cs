@@ -1,5 +1,4 @@
-﻿using FlowerShop.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FlowerShop.Views.CodeBehind
+namespace FlowerShop.Views
 {
     /// <summary>
-    /// Interaction logic for StorageCreateWindow.xaml
+    /// Interaction logic for StorageOverviewWindow.xaml
     /// </summary>
-    public partial class StorageCreateWindow : Window
+    public partial class StorageOverviewWindow : UserControl
     {
-        internal ProductViewModel productViewModel;
-
-        public StorageCreateWindow()
+        public StorageOverviewWindow()
         {
             InitializeComponent();
+        }
+
+        private void BT_Create_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

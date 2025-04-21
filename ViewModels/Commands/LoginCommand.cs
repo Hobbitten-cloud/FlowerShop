@@ -48,7 +48,7 @@ namespace FlowerShop.ViewModels.Commands
                 }
                 else // Success
                 {
-                    StorageWindow storageWindow = new StorageWindow()
+                    StorageWindowOld storageWindow = new StorageWindowOld()
                     {
                         Title = "Storage",
                         Topmost = true,

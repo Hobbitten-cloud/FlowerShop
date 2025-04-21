@@ -18,10 +18,10 @@ namespace FlowerShop.Views.CodeBehind
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindowOld : Window
     {
         LoginViewModel lvm = new LoginViewModel();
-        public LoginWindow()
+        public LoginWindowOld()
         {
             InitializeComponent();
             DataContext = lvm;

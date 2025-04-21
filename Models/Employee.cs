@@ -8,17 +8,21 @@ namespace FlowerShop.Models
 {
     public class Employee
     {
-        public int EmployeeId { get; set; }
-
+        public int Id { get; set; }
         public string Name { get; set; }
-
         public string Username { get; set; }
-
         public string Password { get; set; }
+        public string PhoneNumber { get; set; }
+        public EmployeeTitle Title { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
-        public Employee(int employeeId)
+        public Employee(string name, string username, string password, string phoneNumber, EmployeeTitle title)
         {
-            EmployeeId = employeeId;
+            Name = name;
+            Username = username;
+            Password = password;
+            PhoneNumber = phoneNumber;
+            Title = title;
         }
     }
 }

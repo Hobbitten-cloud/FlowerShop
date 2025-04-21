@@ -21,9 +21,9 @@ namespace FlowerShop.Views.CodeBehind
     /// <summary>
     /// Interaction logic for StorageWindow.xaml
     /// </summary>
-    public partial class StorageWindow : Window
+    public partial class StorageWindowOld : Window
     {
-        public StorageWindow()
+        public StorageWindowOld()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace FlowerShop.Views.CodeBehind
         private void CreateButton(object sender, RoutedEventArgs e)
         {
             // Opens the storage window for creating the product
-            StorageCreateWindow storageCreateWindow = new StorageCreateWindow()
+            StorageCreateWindowOld storageCreateWindow = new StorageCreateWindowOld()
             {
                 Title = "StorageCreate",
                 Topmost = true,

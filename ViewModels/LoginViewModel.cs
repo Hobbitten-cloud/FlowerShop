@@ -22,17 +22,17 @@ namespace FlowerShop.ViewModels
         EmployeeRepo employeeRepo = new EmployeeRepo();
         public List<EmployeeViewModel> employeeViewModels = new List<EmployeeViewModel>();
 
-        // Constructor of our MainViewModel
-        public LoginViewModel()
-        {
-            // Calls our function to retrieve all users from the database
-            employeeRepo.GetAll();
+        //// Constructor of our MainViewModel
+        //public LoginViewModel()
+        //{
+        //    // Calls our function to retrieve all users from the database
+        //    employeeRepo.GetAll();
 
-            foreach (Employee employee in employeeRepo.GetEmployeeList())
-            {
-                employeeViewModels.Add(new EmployeeViewModel(employee));
-            }
-        }
+        //    foreach (Employee employee in employeeRepo.GetEmployeeList())
+        //    {
+        //        employeeViewModels.Add(new EmployeeViewModel(employee));
+        //    }
+        //}
 
         // Checks if the employee exists in the employee list
         public EmployeeViewModel? EmployeeLogin(string employeeUsername, string employeePassword)

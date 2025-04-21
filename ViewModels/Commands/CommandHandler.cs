@@ -7,18 +7,25 @@ using System.Windows.Input;
 
 namespace FlowerShop.ViewModels.Commands
 {
-    public class CreateProductCommand : ICommand
+    public class CommandHandler : ICommand
     {
+        private Action _execute;
+
+        public CommandHandler(Action command)
+        { 
+            _execute = command; 
+        }
+
         public event EventHandler? CanExecuteChanged;
 
         public bool CanExecute(object? parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Execute(object? parameter)
         {
-            throw new NotImplementedException();
+            _execute();
         }
     }
 }

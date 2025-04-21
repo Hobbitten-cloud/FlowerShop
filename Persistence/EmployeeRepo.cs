@@ -9,52 +9,31 @@ using System.Threading.Tasks;
 
 namespace FlowerShop.Persistence
 {
-    public class EmployeeRepo
+    public class EmployeeRepo : IRepo<Employee>
     {
-        private List<Employee> employees = new List<Employee>();
-
-        // Reads the database
-        private readonly string ConnectionString;
-
-        public EmployeeRepo()
+        public void Add(Employee item)
         {
-            IConfigurationRoot config = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory) // Ensures relative path works
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .Build();
-
-            ConnectionString = config.GetConnectionString("MyDBConnection");
+            throw new NotImplementedException();
         }
 
         public List<Employee> GetAll()
         {
-            // Retrieves all of our Employees and addes them to our list
-            using (SqlConnection con = new SqlConnection(ConnectionString))
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT EmployeeId, Name, Username, Password FROM EMPLOYEE ORDER BY EmployeeId", con);
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        Employee employee = new Employee(dr.GetInt32(0))
-                        {
-                            Name = dr.GetString(1),
-                            Username = dr.GetString(2),
-                            Password = dr.GetString(3)
-                        };
-                        employees.Add(employee);
-                    }
-                }
-            }
-            return employees;
+            throw new NotImplementedException();
         }
 
-        // Returns the employee list
-        public List<Employee> GetEmployeeList()
+        public Employee? GetById(int id)
         {
-            return employees;
+            throw new NotImplementedException();
         }
 
+        public void Remove(Employee item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Employee item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
