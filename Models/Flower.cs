@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FlowerShop.Models
 {
-    public class FlowerProduct
+    public class Flower
     {
         // Properties below
         public int Id { get; set; }
@@ -20,12 +20,12 @@ namespace FlowerShop.Models
         public bool IsDeleted { get; set; } = false;
 
         // Constructor
-        public FlowerProduct()
+        public Flower()
         {
 
         }
 
-        public FlowerProduct(string name, FlowerPotSize potSize, FlowerSize flowerSize, double salePrice, double purchasePrice, byte[] picture)
+        public Flower(string name, FlowerPotSize potSize, FlowerSize flowerSize, double salePrice, double purchasePrice, byte[] picture)
         {
             Name = name;
             PotSize = potSize;

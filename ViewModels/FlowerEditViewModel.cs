@@ -40,8 +40,8 @@ namespace FlowerShop.ViewModels
             FlowerPotSize.Giant
         };
 
-        private FlowerProduct _selectedFlower;
-        public FlowerProduct SelectedFlower
+        private Flower _selectedFlower;
+        public Flower SelectedFlower
         {
             get
             {
@@ -89,22 +89,22 @@ namespace FlowerShop.ViewModels
             }
         }
 
-        private IRepo<FlowerProduct> _flowerRepo;
+        private IRepo<Flower> _flowerRepo;
 
         // used for navigation
         private readonly NavigationStore _navigationStore;
         public FlowerEditViewModel(NavigationStore navigationStore) : this()
         {
-            _flowerRepo = (FlowerRepo)App.RepoReg.Get<FlowerProduct>("FlowerRepo");
+            _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
             _navigationStore = navigationStore;
         }
 
         // used when creating a flower
         public FlowerEditViewModel()
         {
-            _flowerRepo = (FlowerRepo)App.RepoReg.Get<FlowerProduct>("FlowerRepo");
+            _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
 
-            SelectedFlower = new FlowerProduct();
+            SelectedFlower = new Flower();
 
             SaveImageCmd = new SaveImageCommand(this);
             SaveFlowerCmd = new CommandHandler(SaveFlower);
@@ -112,12 +112,12 @@ namespace FlowerShop.ViewModels
         }
 
         // used when editing a flower
-        public FlowerEditViewModel(NavigationStore navigationStore, FlowerProduct flowerProduct)
+        public FlowerEditViewModel(NavigationStore navigationStore, Flower flowerProduct)
         {
-            _flowerRepo = (FlowerRepo)App.RepoReg.Get<FlowerProduct>("FlowerRepo");
+            _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
             _navigationStore = navigationStore;
 
-            SelectedFlower = new FlowerProduct
+            SelectedFlower = new Flower
             {
                 Id = flowerProduct.Id,
                 Name = flowerProduct.Name,

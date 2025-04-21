@@ -24,9 +24,10 @@ namespace FlowerShop.ViewModels
         public ICommand EditFlowerCmd { get; }
 
         public ICommand ForwardToCreateFlowerCmd { get; }
+        public ICommand BackToStartCmd { get; }
 
-        private FlowerProduct _selectedFlower;
-        public FlowerProduct SelectedFlower
+        private Flower _selectedFlower;
+        public Flower SelectedFlower
         {
             get
             {
@@ -63,22 +64,23 @@ namespace FlowerShop.ViewModels
             }
         }
 
-        private IRepo<FlowerProduct> _flowerRepo;
-        public ObservableCollection<FlowerProduct> Flowers { get; set; } = new ObservableCollection<FlowerProduct>();
+        private IRepo<Flower> _flowerRepo;
+        public ObservableCollection<Flower> Flowers { get; set; } = new ObservableCollection<Flower>();
 
         private readonly NavigationStore _navigationStore;
 
         public FlowerStorageViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
-            _flowerRepo = (FlowerRepo)App.RepoReg.Get<FlowerProduct>("FlowerRepo");
+            _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
 
             ForwardToCreateFlowerCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new FlowerEditViewModel(_navigationStore));
+            BackToStartCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new StartViewModel(_navigationStore));
 
             DeleteFlowerCmd = new CommandHandler(DeleteSelectedFlower);
             EditFlowerCmd = new CommandHandler(EditSelectedFlower);
 
-            foreach (FlowerProduct flower in _flowerRepo.GetAll())
+            foreach (Flower flower in _flowerRepo.GetAll())
             {
                 Flowers.Add(flower);
             }
@@ -93,7 +95,7 @@ namespace FlowerShop.ViewModels
         {
             if (SelectedFlower != null)
             {
-                FlowerProduct flowerToRemove = ((FlowerRepo)_flowerRepo).GetById(SelectedFlower.Id);
+                Flower flowerToRemove = ((FlowerRepo)_flowerRepo).GetById(SelectedFlower.Id);
 
                 if (MessageBox.Show("Er du sikker på, du vil slette?", "Slet", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {

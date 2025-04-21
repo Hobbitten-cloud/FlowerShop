@@ -13,19 +13,19 @@ using System.Threading.Tasks;
 
 namespace FlowerShop.Persistence
 {
-    public class FlowerRepo : IRepo<FlowerProduct>
+    public class FlowerRepo : IRepo<Flower>
     {
         private readonly string ConnectionString;
-        private List<FlowerProduct> _flowerProducts;
+        private List<Flower> _flowerProducts;
 
         public FlowerRepo()
         {
             IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            _flowerProducts = new List<FlowerProduct>();
+            _flowerProducts = new List<Flower>();
             ConnectionString = config.GetConnectionString("MyDBConnection");
         }
 
-        public void Add(FlowerProduct flowerProducts)
+        public void Add(Flower flowerProducts)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -47,9 +47,9 @@ namespace FlowerShop.Persistence
             }
         }
 
-        public List<FlowerProduct> GetAll()
+        public List<Flower> GetAll()
         {
-            List<FlowerProduct> flowerProducts = new List<FlowerProduct>();
+            List<Flower> flowerProducts = new List<Flower>();
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
@@ -58,7 +58,7 @@ namespace FlowerShop.Persistence
                 {
                     while (dr.Read())
                     {
-                        FlowerProduct flowerProduct = new FlowerProduct
+                        Flower flowerProduct = new Flower
                         {
                             Id = dr.GetInt32(0),
                             Name = dr.GetString(1),
@@ -76,9 +76,9 @@ namespace FlowerShop.Persistence
             return flowerProducts;
         }
 
-        public FlowerProduct? GetById(int id)
+        public Flower? GetById(int id)
         {
-            FlowerProduct? flowerProduct = null;
+            Flower? flowerProduct = null;
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
@@ -89,7 +89,7 @@ namespace FlowerShop.Persistence
                 {
                     if (dr.Read())
                     {
-                        flowerProduct = new FlowerProduct
+                        flowerProduct = new Flower
                         {
                             Id = dr.GetInt32(0),
                             Name = dr.GetString(1),
@@ -106,7 +106,7 @@ namespace FlowerShop.Persistence
             return flowerProduct;
         }
 
-        public void Remove(FlowerProduct flowerProduct)
+        public void Remove(Flower flowerProduct)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
@@ -117,7 +117,7 @@ namespace FlowerShop.Persistence
             }
         }
 
-        public void Update(FlowerProduct flowerProducts)
+        public void Update(Flower flowerProducts)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {

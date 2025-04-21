@@ -10,15 +10,16 @@
        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <ContentControl Content="{Binding CurrentViewModel}">
         <ContentControl.Resources>
-            
-            <!-- StorageOverview -->
             <DataTemplate DataType="{x:Type ViewModels:FlowerStorageViewModel}">
                 <Views:FlowerStorageWindow/>
             </DataTemplate>
 
-            <!-- Product creation & Edit -->
             <DataTemplate DataType="{x:Type ViewModels:FlowerEditViewModel}">
                 <Views:FlowerEditWindow/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModels:StartViewModel}">
+                <Views:StartWindow/>
             </DataTemplate>
 
         </ContentControl.Resources>

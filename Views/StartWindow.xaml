@@ -24,8 +24,27 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
+
+        <!-- Labels -->
+        <Label FontSize="20" FontWeight="Bold" Content="Lers Blomster" Grid.Column="1" Grid.Row="1" 
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <!-- Buttons -->
+        <Button Name="BT_NavigateToFlower" Content="Blomster" Command="{Binding ForwardToFlowerCmd}" 
+                Grid.Column="2" Grid.Row="2" FontSize="20" FontWeight="Bold" Height="40" Width="140"
+                HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Name="BT_NavigateToWreath" Content="Kranser" Command="{Binding ForwardToWreathCmd}" 
+                Grid.Column="3" Grid.Row="2" FontSize="20" FontWeight="Bold" Height="40" Width="140"
+                HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Name="BT_NavigateToMiscellaneous" Content="Diverse" Command="{Binding ForwardToMiscellaneousCmd}" 
+                Grid.Column="4" Grid.Row="2" FontSize="20" FontWeight="Bold" Height="40" Width="140"
+                HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Name="BT_NavigateToNote" Content="Noter" Command="{Binding ForwardToNoteCmd}" 
+                Grid.Column="3" Grid.Row="3" FontSize="20" FontWeight="Bold" Height="40" Width="140"
+                HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
     </Grid>
 </UserControl>
