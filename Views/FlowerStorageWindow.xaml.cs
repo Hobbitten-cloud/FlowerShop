@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FlowerShop.Views
 {
     /// <summary>
-    /// Interaction logic for ProductEditWindow.xaml
+    /// Interaction logic for StorageOverviewWindow.xaml
     /// </summary>
-    public partial class ProductEditWindow : UserControl
+    public partial class FlowerStorageWindow : UserControl
     {
-        public ProductEditWindow()
+        public FlowerStorageWindow()
         {
             InitializeComponent();
         }

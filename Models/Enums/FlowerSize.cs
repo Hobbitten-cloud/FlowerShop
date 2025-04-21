@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowerShop.Models
+namespace FlowerShop.Models.Enums
 {
-    public enum ProductLocation
+    public enum FlowerSize
     {
-        Inside,
-        Outside,
-        Both
+        Small,
+        Medium,
+        Large
     }
 }

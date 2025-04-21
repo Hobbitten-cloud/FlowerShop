@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace FlowerShop.Views
 {
     /// <summary>
-    /// Interaction logic for StorageOverviewWindow.xaml
+    /// Interaction logic for StartWindow.xaml
     /// </summary>
-    public partial class StorageOverviewWindow : UserControl
+    public partial class StartWindow : UserControl
     {
-        public StorageOverviewWindow()
+        public StartWindow()
         {
             InitializeComponent();
-        }
-
-        private void BT_Create_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

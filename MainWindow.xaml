@@ -12,13 +12,13 @@
         <ContentControl.Resources>
             
             <!-- StorageOverview -->
-            <DataTemplate DataType="{x:Type ViewModels:StorageOverviewViewModel}">
-                <Views:StorageOverviewWindow/>
+            <DataTemplate DataType="{x:Type ViewModels:FlowerStorageViewModel}">
+                <Views:FlowerStorageWindow/>
             </DataTemplate>
 
             <!-- Product creation & Edit -->
-            <DataTemplate DataType="{x:Type ViewModels:ProductEditViewModel}">
-                <Views:ProductEditWindow/>
+            <DataTemplate DataType="{x:Type ViewModels:FlowerEditViewModel}">
+                <Views:FlowerEditWindow/>
             </DataTemplate>
 
         </ContentControl.Resources>

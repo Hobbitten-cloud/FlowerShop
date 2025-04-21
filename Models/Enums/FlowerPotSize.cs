@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowerShop.Models
+namespace FlowerShop.Models.Enums
 {
-    public enum ProductSize
+    public enum FlowerPotSize
     {
         Tiny,
         Small,

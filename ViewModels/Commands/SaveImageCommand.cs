@@ -10,9 +10,9 @@ namespace FlowerShop.ViewModels.Commands
 {
     public class SaveImageCommand : ICommand
     {
-        private readonly ProductEditViewModel _viewModel;
+        private readonly FlowerEditViewModel _viewModel;
 
-        public SaveImageCommand(ProductEditViewModel viewModel)
+        public SaveImageCommand(FlowerEditViewModel viewModel)
         {
             _viewModel = viewModel;
         }

@@ -22,12 +22,11 @@ namespace FlowerShop
             RepoReg = new RepoRegistry();
 
             // Repository registrations
-            RepoReg.Register<Employee>("EmployeeRepo", new EmployeeRepo());
-            RepoReg.Register<Product>("ProductRepo", new ProductRepo());
+            RepoReg.Register<FlowerProduct>("FlowerRepo", new FlowerRepo());
 
             // Initialize the navigation store and set the initial view model
             NavigationStore navigationStore = new NavigationStore();
-            navigationStore.CurrentViewModel = new StorageOverviewViewModel(navigationStore);
+            navigationStore.CurrentViewModel = new FlowerStorageViewModel(navigationStore);
 
             // Initialize the main window and set its data context
             MainWindow = new MainWindow()
