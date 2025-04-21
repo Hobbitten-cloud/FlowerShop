@@ -13,6 +13,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Collections.ObjectModel;
 using FlowerShop.ViewModels.Commands;
 using System.Windows.Input;
+using System.Windows;
 
 namespace FlowerShop.ViewModels
 {
@@ -74,11 +75,37 @@ namespace FlowerShop.ViewModels
 
             ForwardToCreateProductCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new ProductEditViewModel(_navigationStore));
 
+            DeleteProductCmd = new CommandHandler(DeleteSelectedProduct);
+            EditProductCmd = new CommandHandler(EditSelectedProduct);
+
             foreach (Product product in _productRepo.GetAll())
             {
                 Products.Add(product);
             }
         }
 
+        public void EditSelectedProduct()
+        {
+            _navigationStore.CurrentViewModel = new ProductEditViewModel(_navigationStore, SelectedProduct);
+        }
+
+        public void DeleteSelectedProduct()
+        {
+            if (SelectedProduct != null)
+            {
+                Product productToRemove = ((ProductRepo)_productRepo).GetById(SelectedProduct.Id);
+
+                if (MessageBox.Show("Er du sikker på, du vil slette?", "Slet", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    if (productToRemove != null)
+                    {
+                        _productRepo.Remove(productToRemove);
+                        Products.Remove(SelectedProduct);
+                        SelectedProduct = null;
+                        MessageBox.Show("Produktet er nu slettet", "Slet", MessageBoxButton.OK);
+                    }
+                }
+            }
+        }
     }
 }

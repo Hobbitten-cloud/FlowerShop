@@ -13,7 +13,7 @@ namespace FlowerShop.Models
         public string ProductName { get; set; }
         public byte[] Picture { get; set; }
         public double Price { get; set; }
-        public string Size { get; set; }
+        public ProductSize Size { get; set; }
         public string Amount { get; set; }
         public ProductLocation Location { get; set; }
         public bool IsDeleted { get; set; } = false;
@@ -23,7 +23,7 @@ namespace FlowerShop.Models
         {
         }
 
-        public Product(string productName, byte[] picture, double price, string size, string amount, ProductLocation location)
+        public Product(string productName, byte[] picture, double price, ProductSize size, string amount, ProductLocation location)
         {
             ProductName = productName;
             Picture = picture;

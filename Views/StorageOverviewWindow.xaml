@@ -34,19 +34,22 @@
                HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <!-- Buttons -->
-        <Button Name="BT_Create" Command="{Binding ForwardToCreateProductCmd}" Grid.Column="2" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Opret Blomst" 
+        <Button Name="BT_Create" Command="{Binding ForwardToCreateProductCmd}" 
+                Grid.Column="2" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Opret Blomst" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
-        
-        <Button Name="BT_Edit" Grid.Column="3" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Ændr Blomst" 
+
+        <Button Name="BT_Edit" Command="{Binding EditProductCmd}" CommandParameter="{Binding}" 
+                Grid.Column="3" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Ændr Blomst" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
-        
-        <Button Name="BT_Delete" Grid.Column="6" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Slet Blomst" 
+
+        <Button Name="BT_Delete" Command="{Binding DeleteProductCmd}" CommandParameter="{Binding}" 
+                Grid.Column="6" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Slet Blomst" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
 
         <!-- Listbox content -->
         <ListView Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Name="LB_Product" 
                   ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" SelectionMode="Single" 
-                  Background="LightGray" Foreground="Black">
+                  Background="LightGray" Foreground="Red" FontWeight="Bold">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Navn" Width="Auto" DisplayMemberBinding="{Binding ProductName}"/>

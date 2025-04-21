@@ -32,7 +32,7 @@ namespace FlowerShop.Persistence
             {
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand("INSERT INTO Product (ProductName, Picture, Price, Size, Amount, Location)" +
-                                                       "VALUES(@ProductName, @Picture, @Price, @Size, @Location)" +
+                                                       "VALUES(@ProductName, @Picture, @Price, @Size, @Amount, @Location)" +
                                                        "SELECT @@IDENTITY", con))
                 {
                     cmd.Parameters.Add("@ProductName", SqlDbType.NVarChar).Value = product.ProductName;
@@ -65,7 +65,7 @@ namespace FlowerShop.Persistence
                             ProductName = dr.GetString(1),
                             Picture = (byte[])dr.GetSqlBinary(2).Value,
                             Price = dr.GetDouble(3),
-                            Size = dr.GetString(4),
+                            Size = (ProductSize)Enum.Parse(typeof(ProductSize), dr.GetString(4)),
                             Amount = dr.GetString(5),
                             Location = (ProductLocation)Enum.Parse(typeof(ProductLocation), dr.GetString(6)),
                             IsDeleted = dr.GetBoolean(7)
@@ -96,7 +96,7 @@ namespace FlowerShop.Persistence
                             ProductName = dr.GetString(1),
                             Picture = (byte[])dr.GetSqlBinary(2).Value,
                             Price = dr.GetDouble(3),
-                            Size = dr.GetString(4),
+                            Size = (ProductSize)Enum.Parse(typeof(ProductSize), dr.GetString(4)),
                             Amount = dr.GetString(5),
                             Location = (ProductLocation)Enum.Parse(typeof(ProductLocation), dr.GetString(6)),
                             IsDeleted = dr.GetBoolean(7)
