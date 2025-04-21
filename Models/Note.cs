@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowerShop.ViewModels.Commands
+namespace FlowerShop.Models
 {
-    public class DeleteProductCommand
+    public class Note
     {
 
     }

@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="FlowerShop.Views.FlowerEditWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlowerShop.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="#16a085">
+    <Grid>
+        <!-- Rows -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <!-- Columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Labels -->
+        <Label FontSize="20" FontWeight="Bold" Content="Lers Blomster" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
+               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label FontSize="18" FontWeight="Bold" Content="Navn" Grid.Column="1" Grid.Row="2" 
+               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label FontSize="18" FontWeight="Bold" Content="Potte Størrelse" Grid.Column="1" Grid.Row="3" 
+               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label FontSize="18" FontWeight="Bold" Content="Plante Størrelse" Grid.Column="1" Grid.Row="4" 
+               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label FontSize="18" FontWeight="Bold" Content="Salgs Pris" Grid.Column="1" Grid.Row="5" 
+               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label FontSize="18" FontWeight="Bold" Content="Indkøbs Pris" Grid.Column="1" Grid.Row="6" 
+               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label FontSize="18" FontWeight="Bold" Content="Billede" Grid.Column="3" Grid.Row="5" 
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <!-- Textboxes -->
+        <TextBox x:Name="TB_Name" Text="{Binding SelectedFlower.Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="2" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="200"/>
+        <TextBox x:Name="TB_SalePrice" Text="{Binding SelectedFlower.SalePrice, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="5" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="200"/>
+        <TextBox x:Name="TB_PurchasePrice" Text="{Binding SelectedFlower.PurchasePrice, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="6"  
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="200"/>
+        <TextBox x:Name="TB_Picture" Text="{Binding SelectedFilePath, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="5" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="200" IsEnabled="False"/>
+
+        <!-- Combo boxes -->
+        <ComboBox x:Name="CB_FlowerSizes" ItemsSource="{Binding flowerSizes}" SelectedItem="{Binding SelectedFlower.PlantSize}" Grid.Column="2" Grid.Row="3" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
+        <ComboBox x:Name="CB_FlowerPotSizes" ItemsSource="{Binding flowerPotSizes}" SelectedItem="{Binding SelectedFlower.PotSize}" Grid.Column="2" Grid.Row="4" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
+
+        <!-- Buttons -->
+        <Button Content="Vælg Billed" Command="{Binding SaveImageCmd, UpdateSourceTrigger=PropertyChanged}" Grid.Column="5" Grid.Row="5" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="30" FontWeight="Bold"/>
+        
+        <Button Content="Opret Produkt" Command="{Binding SaveFlowerCmd}" Grid.Column="5" Grid.Row="6" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" FontWeight="Bold" IsDefault="True"/>
+        
+        <Button Content="Fotryd" Command="{Binding BackToFlowerStorageCmd}" Grid.Column="4" Grid.Row="6" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" FontWeight="Bold"/>
+
+        <!-- Image -->
+        <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="3" Width="Auto" Height="Auto" 
+                BorderBrush="Black" BorderThickness="2"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <Image Name="PictureBox" Source="{Binding FlowerImage}" Stretch="Fill" Width="300" Height="250" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+    </Grid>
+</UserControl>
