@@ -74,11 +74,11 @@ namespace FlowerShop.ViewModels
             _navigationStore = navigationStore;
             _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
 
-            ForwardToCreateFlowerCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new FlowerEditViewModel(_navigationStore));
-            BackToStartCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new StartViewModel(_navigationStore));
-
             DeleteFlowerCmd = new CommandHandler(DeleteSelectedFlower);
             EditFlowerCmd = new CommandHandler(EditSelectedFlower);
+
+            ForwardToCreateFlowerCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new FlowerEditViewModel(_navigationStore));
+            BackToStartCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new StartViewModel(_navigationStore));
 
             foreach (Flower flower in _flowerRepo.GetAll())
             {
@@ -88,7 +88,14 @@ namespace FlowerShop.ViewModels
 
         public void EditSelectedFlower()
         {
-            _navigationStore.CurrentViewModel = new FlowerEditViewModel(_navigationStore, SelectedFlower);
+            if (SelectedFlower != null)
+            {
+                _navigationStore.CurrentViewModel = new FlowerEditViewModel(_navigationStore, SelectedFlower);
+            }
+            else
+            {
+                MessageBox.Show("Du skal vælge en blomst først!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         public void DeleteSelectedFlower()
@@ -107,6 +114,10 @@ namespace FlowerShop.ViewModels
                         MessageBox.Show("Produktet er nu slettet", "Slet", MessageBoxButton.OK);
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Du skal vælge en blomst først!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }
