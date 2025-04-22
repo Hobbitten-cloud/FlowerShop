@@ -8,6 +8,9 @@ namespace FlowerShop.Models
 {
     public class Miscellaneous
     {
-
+        public string Name { get; set; }
+        public double PurchasePrice { get; set; }
+        public int Amount { get; set; }
+        public byte[] Picture { get; set; }
     }
 }
