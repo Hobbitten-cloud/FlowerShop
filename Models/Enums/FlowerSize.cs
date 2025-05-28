@@ -10,6 +10,7 @@ namespace FlowerShop.Models.Enums
     {
         Small,
         Medium,
-        Large
+        Large,
+        None
     }
 }

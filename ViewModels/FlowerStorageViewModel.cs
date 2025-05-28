@@ -14,17 +14,17 @@ using System.Collections.ObjectModel;
 using FlowerShop.ViewModels.Commands;
 using System.Windows.Input;
 using System.Windows;
+using FlowerShop.Services.RepoServices;
+using FlowerShop.Services;
 
 namespace FlowerShop.ViewModels
 {
     public class FlowerStorageViewModel : BaseViewModel
     {
-        public ICommand DeleteFlowerCmd { get; }
-
-        public ICommand EditFlowerCmd { get; }
-
-        public ICommand ForwardToCreateFlowerCmd { get; }
-        public ICommand BackToStartCmd { get; }
+        public ICommand BackwardCommand { get; }
+        public ICommand DeleteFlowerCommand { get; }
+        public ICommand ForwardToCreateFlowerCommand { get; }
+        public ICommand ForwardToEditFlowerCommand { get; }
 
         private Flower _selectedFlower;
         public Flower SelectedFlower
@@ -37,87 +37,62 @@ namespace FlowerShop.ViewModels
             {
                 _selectedFlower = value;
                 OnPropertyChanged(nameof(SelectedFlower));
-                OnPropertyChanged(nameof(FlowerImage));
-            }
-
-        }
-
-        public ImageSource FlowerImage
-        {
-            get
-            {
-                if (_selectedFlower?.Picture == null || _selectedFlower.Picture.Length <= 4)
-                {
-                    return null;
-                }
-
-                BitmapImage bitmap = new BitmapImage();
-
-                using (MemoryStream ms = new MemoryStream(SelectedFlower.Picture))
-                {
-                    bitmap.BeginInit();
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.StreamSource = ms;
-                    bitmap.EndInit();
-                }
-                return bitmap;
             }
         }
 
         private IRepo<Flower> _flowerRepo;
-        public ObservableCollection<Flower> Flowers { get; set; } = new ObservableCollection<Flower>();
-
+        private readonly FlowerService _flowerService;
         private readonly NavigationStore _navigationStore;
+        public ObservableCollection<Flower> Flowers { get; set; } = new ObservableCollection<Flower>();
 
         public FlowerStorageViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
+
             _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
+            _flowerService = new FlowerService(_flowerRepo);
 
-            DeleteFlowerCmd = new CommandHandler(DeleteSelectedFlower);
-            EditFlowerCmd = new CommandHandler(EditSelectedFlower);
+            ForwardToEditFlowerCommand = new CommandHandler(() => _navigationStore.CurrentViewModel = new FlowerEditViewModel(navigationStore, SelectedFlower), () => SelectedFlower != null);
+            DeleteFlowerCommand = new CommandHandler(DeleteSelectedFlower, () => SelectedFlower != null);
+          
+            ForwardToCreateFlowerCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerCreateViewModel(navigationStore)));
+            BackwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new StartViewModel(navigationStore)));
 
-            ForwardToCreateFlowerCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new FlowerEditViewModel(_navigationStore));
-            BackToStartCmd = new CommandHandler(() => _navigationStore.CurrentViewModel = new StartViewModel(_navigationStore));
-
-            foreach (Flower flower in _flowerRepo.GetAll())
-            {
-                Flowers.Add(flower);
-            }
+            LoadFlowers();
         }
 
-        public void EditSelectedFlower()
+        public void LoadFlowers()
         {
-            if (SelectedFlower != null)
+            try
             {
-                _navigationStore.CurrentViewModel = new FlowerEditViewModel(_navigationStore, SelectedFlower);
+                Flowers.Clear();
+                var flowers = _flowerRepo.GetAll();
+                foreach (var flower in flowers)
+                {
+                    Flowers.Add(flower);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Du skal vælge en blomst først!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Der opstod en fejl under indlæsning af blomster: {ex.Message}", "Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         public void DeleteSelectedFlower()
         {
-            if (SelectedFlower != null)
+            if (MessageBox.Show("Er du sikker på, du vil slette? " + SelectedFlower.Name, "Slet", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                Flower flowerToRemove = ((FlowerRepo)_flowerRepo).GetById(SelectedFlower.Id);
-
-                if (MessageBox.Show("Er du sikker på, du vil slette?", "Slet", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                try
                 {
-                    if (flowerToRemove != null)
-                    {
-                        _flowerRepo.Remove(flowerToRemove);
-                        Flowers.Remove(SelectedFlower);
-                        SelectedFlower = null;
-                        MessageBox.Show("Produktet er nu slettet", "Slet", MessageBoxButton.OK);
-                    }
+                    _flowerService.Remove(SelectedFlower);
+                    Flowers.Remove(SelectedFlower);
+                    SelectedFlower = null;
+                    MessageBox.Show("Blomsten er nu blevet slettet", "Slet", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Du skal vælge en blomst først!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Der opstod en fejl: {ex.Message}", "Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

@@ -12,6 +12,7 @@ namespace FlowerShop.Models.Enums
         Small,
         Medium,
         Large,
-        Giant
+        Giant,
+        None
     }
 }

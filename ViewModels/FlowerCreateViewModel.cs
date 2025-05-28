@@ -1,29 +1,25 @@
 ﻿using FlowerShop.Models;
 using FlowerShop.Models.Enums;
 using FlowerShop.Persistence;
+using FlowerShop.Persistence.Interfaces;
+using FlowerShop.Services;
+using FlowerShop.Services.RepoServices;
 using FlowerShop.Stores;
 using FlowerShop.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
-using System.ComponentModel;
-using FlowerShop.Persistence.Interfaces;
-using FlowerShop.Services.RepoServices;
-using FlowerShop.Services;
 
 namespace FlowerShop.ViewModels
 {
-    public class FlowerEditViewModel : BaseViewModel, IPictureSelection
+    public class FlowerCreateViewModel : BaseViewModel, IPictureSelection
     {
         public ICommand SelectImageCommand { get; }
+        public ICommand CreateFlowerCommand { get; }
         public ICommand ForwardCommand { get; }
         public ICommand BackwardCommand { get; }
 
@@ -72,28 +68,28 @@ namespace FlowerShop.ViewModels
         private IRepo<Flower> _flowerRepo;
         private readonly FlowerService _flowerService;
 
-        public FlowerEditViewModel(NavigationStore navigationStore, Flower flower)
+        public FlowerCreateViewModel(NavigationStore navigationStore)
         {
             _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
             _flowerService = new FlowerService(_flowerRepo);
 
-            var navigate = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
+            var navigate= new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
             ForwardCommand = navigate;
             BackwardCommand = navigate;
 
-            SelectedFlower = flower;
+            SelectedFlower = new Flower();
 
-            ForwardCommand = new CommandHandler(() => { EditFlower(); navigate.Execute(null); });
+            CreateFlowerCommand = new CommandHandler(() => { CreateNewFlower(); navigate.Execute(null); });
 
             SelectImageCommand = new SelectImageCommand(this);
         }
 
-        public void EditFlower()
+        public void CreateNewFlower()
         {
             try
             {
                 _flowerService.Add(SelectedFlower, SelectedPicture);
-                MessageBox.Show("Blomsten er blevet opdateret!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Blomsten er blevet oprettet!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

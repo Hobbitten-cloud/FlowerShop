@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlowerShop.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="#16a085">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <!-- Rows -->
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        
+
         <!-- Columns -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -29,25 +29,25 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        
+
         <!-- Labels -->
         <Label FontSize="20" FontWeight="Bold" Content="Lers Blomster" Grid.Column="1" Grid.Row="1" 
                HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <!-- Buttons -->
-        <Button Name="BT_Create" Command="{Binding ForwardToCreateFlowerCmd}" 
+        <Button Name="BT_Create" Command="{Binding ForwardToCreateFlowerCommand}" 
                 Grid.Column="2" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Opret Blomst" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
 
-        <Button Name="BT_Edit" Command="{Binding EditFlowerCmd}" CommandParameter="{Binding}" 
+        <Button Name="BT_Edit" Command="{Binding ForwardToEditFlowerCommand}" CommandParameter="{Binding}" 
                 Grid.Column="3" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Ændr Blomst" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
 
-        <Button Name="BT_Delete" Command="{Binding DeleteFlowerCmd}" CommandParameter="{Binding}" 
+        <Button Name="BT_Delete" Command="{Binding DeleteFlowerCommand}" CommandParameter="{Binding}" 
                 Grid.Column="6" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Slet Blomst" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
 
-        <Button Name="BT_Back" Command="{Binding BackToStartCmd}"
+        <Button Name="BT_Back" Command="{Binding BackwardCommand}"
                 Grid.Column="6" Grid.Row="5" FontSize="20" FontWeight="Bold" Content="Tilbage" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
 
@@ -64,15 +64,15 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        
-        
+
+
         <!-- Image -->
         <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="3" Width="Auto" Height="Auto" 
                 BorderBrush="Black" BorderThickness="2"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
 
-            <Image Name="PictureBox" Source="{Binding FlowerImage}" Stretch="Fill" Width="300" Height="250" 
-                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Name="PictureBox" Source="{Binding SelectedFlower.Picture}" Stretch="Fill" Width="300" Height="250" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Border>
     </Grid>
 </UserControl>

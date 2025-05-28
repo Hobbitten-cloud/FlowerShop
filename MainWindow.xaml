@@ -7,21 +7,33 @@
        xmlns:ViewModels="clr-namespace:FlowerShop.ViewModels"
        xmlns:Views="clr-namespace:FlowerShop.Views"
        mc:Ignorable="d"
-       Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <ContentControl Content="{Binding CurrentViewModel}">
-        <ContentControl.Resources>
-            <DataTemplate DataType="{x:Type ViewModels:FlowerStorageViewModel}">
-                <Views:FlowerStorageWindow/>
-            </DataTemplate>
+       Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="ForestGreen">
+    <Viewbox Stretch="Fill">
+        <Grid Height="450" Width="800">
+            <Grid.Background>
+                <ImageBrush ImageSource=".\models\ressources\lersblomster_logo.png" Opacity="0.40"/>
+            </Grid.Background>
 
-            <DataTemplate DataType="{x:Type ViewModels:FlowerEditViewModel}">
-                <Views:FlowerEditWindow/>
-            </DataTemplate>
+            <ContentControl Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type ViewModels:FlowerStorageViewModel}">
+                        <Views:FlowerStorageWindow/>
+                    </DataTemplate>
 
-            <DataTemplate DataType="{x:Type ViewModels:StartViewModel}">
-                <Views:StartWindow/>
-            </DataTemplate>
+                    <DataTemplate DataType="{x:Type ViewModels:FlowerEditViewModel}">
+                        <Views:FlowerEditWindow/>
+                    </DataTemplate>
 
-        </ContentControl.Resources>
-   </ContentControl>
+                    <DataTemplate DataType="{x:Type ViewModels:FlowerCreateViewModel}">
+                        <Views:FlowerCreateWindow/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type ViewModels:StartViewModel}">
+                        <Views:StartWindow/>
+                    </DataTemplate>
+
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
+    </Viewbox>
 </Window>
