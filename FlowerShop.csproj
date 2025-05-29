@@ -6,10 +6,16 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <PackageIcon></PackageIcon>
+    <ApplicationIcon>lersblomsterIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Models\Ressources\lersblomster_logo.png" />
+    <None Remove="Models\Ressources\LersBlomsterLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="lersblomsterIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Models\Ressources\lersblomster_logo.png">
+    <Resource Include="Models\Ressources\LersBlomsterLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -9,70 +9,47 @@
     <Grid>
         <!-- Rows -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
         <!-- Columns -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Labels -->
-        <Label FontSize="20" FontWeight="Bold" Content="Lers Blomster" Grid.Column="1" Grid.Row="1" 
-               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Column="1" Grid.RowSpan="3">
+            <Button Name="BT_Create" Command="{Binding ForwardToCreateFlowerCommand}" 
+                    FontSize="20" FontWeight="Bold" Content="Opret Blomst" Margin="0,50,0,0"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
 
-        <!-- Buttons -->
-        <Button Name="BT_Create" Command="{Binding ForwardToCreateFlowerCommand}" 
-                Grid.Column="2" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Opret Blomst" 
-                HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
+            <Button Name="BT_Edit" Command="{Binding ForwardToEditFlowerCommand}" CommandParameter="{Binding}" 
+                    FontSize="20" FontWeight="Bold" Content="Ændr Blomst" Margin="0,30,0,0"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
 
-        <Button Name="BT_Edit" Command="{Binding ForwardToEditFlowerCommand}" CommandParameter="{Binding}" 
-                Grid.Column="3" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Ændr Blomst" 
-                HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
-
-        <Button Name="BT_Delete" Command="{Binding DeleteFlowerCommand}" CommandParameter="{Binding}" 
-                Grid.Column="6" Grid.Row="1" FontSize="20" FontWeight="Bold" Content="Slet Blomst" 
-                HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
-
-        <Button Name="BT_Back" Command="{Binding BackwardCommand}"
-                Grid.Column="6" Grid.Row="5" FontSize="20" FontWeight="Bold" Content="Tilbage" 
-                HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
+            <Button Name="BT_Delete" Command="{Binding DeleteFlowerCommand}" CommandParameter="{Binding}" 
+                    FontSize="20" FontWeight="Bold" Content="Slet Blomst" Margin="0,30,0,0"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="140"/>
+        </StackPanel>
 
         <!-- Listbox content -->
-        <ListView Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Name="LB_Product" 
-                  ItemsSource="{Binding Flowers}" SelectedItem="{Binding SelectedFlower}" SelectionMode="Single" 
-                  Background="LightGray" Foreground="Red" FontWeight="Bold">
+        <ListView Name="LB_Product" ItemsSource="{Binding Flowers}" SelectedItem="{Binding SelectedFlower}" SelectionMode="Single" 
+                  Background="DimGray" Foreground="Black" FontWeight="Bold" Opacity="0.9" MaxHeight="500" Margin="20,20,20,20" 
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="Navn" Width="180" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Salgs Pris" Width="80" DisplayMemberBinding="{Binding SalePrice}"/>
+                    <GridViewColumn Header="Navn" Width="220" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Salgs Pris" Width="100" DisplayMemberBinding="{Binding SalePrice}"/>
                     <GridViewColumn Header="Indkøbs Pris" Width="100" DisplayMemberBinding="{Binding PurchasePrice}"/>
+                    <GridViewColumn Header="Billede" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Picture}" Width="200" Height="200"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-
-
-        <!-- Image -->
-        <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="3" Width="Auto" Height="Auto" 
-                BorderBrush="Black" BorderThickness="2"
-                HorizontalAlignment="Center" VerticalAlignment="Center">
-
-            <Image Name="PictureBox" Source="{Binding SelectedFlower.Picture}" Stretch="Fill" Width="300" Height="250" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        </Border>
     </Grid>
 </UserControl>

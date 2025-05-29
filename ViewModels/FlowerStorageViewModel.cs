@@ -56,7 +56,7 @@ namespace FlowerShop.ViewModels
             DeleteFlowerCommand = new CommandHandler(DeleteSelectedFlower, () => SelectedFlower != null);
           
             ForwardToCreateFlowerCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerCreateViewModel(navigationStore)));
-            BackwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new StartViewModel(navigationStore)));
+            //BackwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new StartViewModel(navigationStore)));
 
             LoadFlowers();
         }
