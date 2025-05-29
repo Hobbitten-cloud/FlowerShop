@@ -25,22 +25,27 @@ namespace FlowerShop.Services.RepoServices
             {
                 throw new Exception("Blomsternavn er påkrævet.");
             }
+
             if (flower.PotSize == FlowerPotSize.None)
             {
                 throw new Exception("Blomsterkrukke størrelse er påkrævet.");
             }
+
             if (flower.PlantSize == FlowerSize.None)
             {
                 throw new Exception("Blomst størrelse er påkrævet.");
             }
+
             if (flower.SalePrice <= 0)
             {
                 throw new Exception("Salgspris skal være større end 0.");
             }
+
             if (flower.PurchasePrice <= 0)
             {
                 throw new Exception("Indkøbspris skal være større end 0.");
             }
+
             if (!string.IsNullOrEmpty(image))
             {
                 if (!File.Exists(image))
@@ -50,6 +55,7 @@ namespace FlowerShop.Services.RepoServices
 
                 flower.Picture = File.ReadAllBytes(image);
             }
+
             if (flower.Picture == null || flower.Picture.Length == 0)
             {
                 throw new Exception("Billede af bilen er påkrævet.");
@@ -64,22 +70,27 @@ namespace FlowerShop.Services.RepoServices
             {
                 throw new Exception("Blomsternavn er påkrævet.");
             }
+
             if (flower.PotSize == FlowerPotSize.None)
             {
                 throw new Exception("Blomsterkrukke størrelse er påkrævet.");
             }
+
             if (flower.PlantSize == FlowerSize.None)
             {
                 throw new Exception("Blomst størrelse er påkrævet.");
             }
+
             if (flower.SalePrice <= 0)
             {
                 throw new Exception("Salgspris skal være større end 0.");
             }
+
             if (flower.PurchasePrice <= 0)
             {
                 throw new Exception("Indkøbspris skal være større end 0.");
             }
+
             if (!string.IsNullOrEmpty(image))
             {
                 if (!File.Exists(image))
@@ -89,6 +100,7 @@ namespace FlowerShop.Services.RepoServices
 
                 flower.Picture = File.ReadAllBytes(image);
             }
+
             if (flower.Picture == null || flower.Picture.Length == 0)
             {
                 throw new Exception("Billede af bilen er påkrævet.");

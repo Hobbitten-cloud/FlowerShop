@@ -19,7 +19,6 @@ namespace FlowerShop.ViewModels
     public class FlowerCreateViewModel : BaseViewModel, IPictureSelection
     {
         public ICommand SelectImageCommand { get; }
-        public ICommand CreateFlowerCommand { get; }
         public ICommand ForwardCommand { get; }
         public ICommand BackwardCommand { get; }
 
@@ -79,7 +78,7 @@ namespace FlowerShop.ViewModels
 
             SelectedFlower = new Flower();
 
-            CreateFlowerCommand = new CommandHandler(() => { CreateNewFlower(); navigate.Execute(null); });
+            ForwardCommand = new CommandHandler(() => { CreateNewFlower(); });
 
             SelectImageCommand = new SelectImageCommand(this);
         }

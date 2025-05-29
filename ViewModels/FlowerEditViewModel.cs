@@ -92,7 +92,7 @@ namespace FlowerShop.ViewModels
         {
             try
             {
-                _flowerService.Add(SelectedFlower, SelectedPicture);
+                _flowerService.Update(SelectedFlower, SelectedPicture);
                 MessageBox.Show("Blomsten er blevet opdateret!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)

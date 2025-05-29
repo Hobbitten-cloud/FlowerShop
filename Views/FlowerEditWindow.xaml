@@ -77,7 +77,7 @@
                 BorderBrush="Black" BorderThickness="2"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
 
-            <Image Name="PictureBox" Source="{Binding SelectedFlower.Picture, UpdateSourceTrigger=PropertyChanged}" Stretch="Fill" Width="300" Height="250" 
+            <Image Name="PictureBox" Source="{Binding SelectedPicture, UpdateSourceTrigger=PropertyChanged}" Stretch="Fill" Width="300" Height="250" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
     </Grid>

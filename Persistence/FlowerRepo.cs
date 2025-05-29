@@ -53,7 +53,7 @@ namespace FlowerShop.Persistence
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT Id, Name, PotSize, PlantSize, SalePrice, PurchasePrice, Picture, IsDeleted FROM FlowerProduct", con);
+                SqlCommand cmd = new SqlCommand("SELECT Id, Name, PotSize, PlantSize, SalePrice, PurchasePrice, Picture, IsDeleted FROM FlowerProduct WHERE IsDeleted = 0", con);
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
