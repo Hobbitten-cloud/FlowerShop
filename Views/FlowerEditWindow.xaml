@@ -74,7 +74,7 @@
         <Button Content="Vælg Billed" Command="{Binding SelectImageCommand}" Grid.Column="5" Grid.Row="5" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="30" FontWeight="Bold"/>
 
-        <Button Content="Ændr Produkt" Command="{Binding ForwardCommand}" Grid.Column="5" Grid.Row="6" 
+        <Button Content="Ændr Produkt" Command="{Binding EditFlowerCommand}" Grid.Column="5" Grid.Row="6" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" FontWeight="Bold" IsDefault="True"/>
 
         <Button Content="Fotryd" Command="{Binding BackwardCommand}" Grid.Column="4" Grid.Row="6" 

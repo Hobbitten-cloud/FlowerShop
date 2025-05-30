@@ -82,7 +82,6 @@ namespace FlowerShop.ViewModels
             SelectedFlower = flower;
 
             EditFlowerCommand = new CommandHandler(() => { EditFlower(); });
-
             ForwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
             BackwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
 
