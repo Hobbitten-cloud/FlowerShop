@@ -12,7 +12,7 @@
         <Border Padding="10">
             <Grid Height="600" Width="1000">
                 <Grid.Background>
-                    <ImageBrush ImageSource=".\models\ressources\LersBlomsterLogo.png" Opacity="0.30"/>
+                    <ImageBrush ImageSource="\models\ressources\LersBlomsterLogo.png" Opacity="0.30"/>
                 </Grid.Background>
 
                 <Grid.RowDefinitions>
