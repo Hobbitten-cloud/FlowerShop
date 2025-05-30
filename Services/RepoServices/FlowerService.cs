@@ -19,7 +19,8 @@ namespace FlowerShop.Services.RepoServices
         {
             _flowerRepo = flowerRepo;
         }
-        public void Add(Flower flower, string image = null)
+
+        public void Add(Flower flower, string image)
         {
             if (string.IsNullOrWhiteSpace(flower.Name))
             {
@@ -64,7 +65,7 @@ namespace FlowerShop.Services.RepoServices
             _flowerRepo.Add(flower);
         }
 
-        public void Update(Flower flower, string image = null)
+        public void Update(Flower flower, string image)
         {
             if (string.IsNullOrWhiteSpace(flower.Name))
             {
@@ -109,7 +110,7 @@ namespace FlowerShop.Services.RepoServices
             _flowerRepo.Update(flower);
         }
 
-        public void Remove(Flower flower, string image = null)
+        public void Remove(Flower flower)
         {
             if (flower == null)
             {

@@ -39,11 +39,7 @@
 
                     <Button Content="Noter" FontSize="20" FontFamily="Segoe Print" FontWeight="Bold" 
                         Height="40" Margin="10,0,10,20" Background="DarkGreen" Command="{Binding ForwardToNoteCommand}"/>
-
-                    <!--<Button Content="TEST BUTTON" Height="40" Margin="10,0,10,20" Background="DarkGreen"/>
-                <Button Content="TEST BUTTON" Height="40" Margin="10,0,10,20" Background="DarkGreen"/>
-                <Button Content="TEST BUTTON" Height="40" Margin="10,0,10,20" Background="DarkGreen"/>
-                <Button Content="TEST BUTTON" Height="40" Margin="10,0,10,20" Background="DarkGreen"/>-->
+                    
                 </StackPanel>
 
                 <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1" Height="Auto">
@@ -67,7 +63,7 @@
                         <Style TargetType="Button">
                             <Style.Resources>
                                 <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
+                                    <Setter Property="CornerRadius" Value="5"/>
                                 </Style>
                             </Style.Resources>
                         </Style>

@@ -9,46 +9,24 @@
     <Grid>
         <!-- Rows -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
         <!-- Columns -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
 
         <!-- Labels -->
-        <Label FontSize="40" FontWeight="Bold" Content="Lers Blomster" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
+        <Label FontSize="40" FontWeight="Bold" Content="Lers Blomster" Grid.ColumnSpan="2"
                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-        <!-- Buttons -->
-        <Button Name="BT_NavigateToFlower" Content="Blomster" Command="{Binding ForwardToFlowerCmd}" 
-                Grid.Column="1" Grid.Row="2" FontSize="20" FontWeight="Bold" Height="40" Width="140"
-                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
-        <Button Name="BT_NavigateToWreath" Content="Kranser" Command="{Binding ForwardToWreathCmd}" 
-                Grid.Column="1" Grid.Row="3" FontSize="20" FontWeight="Bold" Height="40" Width="140"
-                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
-        <Button Name="BT_NavigateToMiscellaneous" Content="Diverse" Command="{Binding ForwardToMiscellaneousCmd}" 
-                Grid.Column="1" Grid.Row="4" FontSize="20" FontWeight="Bold" Height="40" Width="140"
-                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
-        <Button Name="BT_NavigateToNote" Content="Noter" Command="{Binding ForwardToNoteCmd}" 
-                Grid.Column="1" Grid.Row="5" FontSize="20" FontWeight="Bold" Height="40" Width="140"
-                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
     </Grid>
 </UserControl>

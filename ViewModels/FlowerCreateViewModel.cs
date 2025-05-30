@@ -21,6 +21,7 @@ namespace FlowerShop.ViewModels
         public ICommand SelectImageCommand { get; }
         public ICommand ForwardCommand { get; }
         public ICommand BackwardCommand { get; }
+        public ICommand CreateFlowerCommand { get; }
 
         public List<FlowerSize> flowerSizes { get; } = new List<FlowerSize>()
         {
@@ -72,13 +73,12 @@ namespace FlowerShop.ViewModels
             _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
             _flowerService = new FlowerService(_flowerRepo);
 
-            var navigate= new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
-            ForwardCommand = navigate;
-            BackwardCommand = navigate;
 
             SelectedFlower = new Flower();
 
-            ForwardCommand = new CommandHandler(() => { CreateNewFlower(); });
+            CreateFlowerCommand = new CommandHandler(() => { CreateNewFlower();});
+            ForwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
+            BackwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
 
             SelectImageCommand = new SelectImageCommand(this);
         }
@@ -89,6 +89,7 @@ namespace FlowerShop.ViewModels
             {
                 _flowerService.Add(SelectedFlower, SelectedPicture);
                 MessageBox.Show("Blomsten er blevet oprettet!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                ForwardCommand.Execute(null);
             }
             catch (Exception ex)
             {

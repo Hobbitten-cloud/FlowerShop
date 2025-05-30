@@ -9,75 +9,83 @@
     <Grid>
         <!-- Rows -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Columns -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="220"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
 
         <!-- Labels -->
-        <Label FontSize="20" FontWeight="Bold" Content="Lers Blomster" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
+        <Label FontSize="20" FontWeight="Bold" Content="Rediger blomst information" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
                HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Label FontSize="18" FontWeight="Bold" Content="Navn" Grid.Column="1" Grid.Row="2" 
+        
+        <Label FontSize="18" FontWeight="Bold" Content="Navn" Grid.Column="1" Grid.Row="1" 
                HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Label FontSize="18" FontWeight="Bold" Content="Potte Størrelse" Grid.Column="1" Grid.Row="3" 
+        
+        <Label FontSize="18" FontWeight="Bold" Content="Potte Størrelse" Grid.Column="1" Grid.Row="2" 
                HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Label FontSize="18" FontWeight="Bold" Content="Plante Størrelse" Grid.Column="1" Grid.Row="4" 
+        
+        <Label FontSize="18" FontWeight="Bold" Content="Plante Størrelse" Grid.Column="1" Grid.Row="3" 
                HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Label FontSize="18" FontWeight="Bold" Content="Salgs Pris" Grid.Column="1" Grid.Row="5" 
+        
+        <Label FontSize="18" FontWeight="Bold" Content="Salgs Pris" Grid.Column="1" Grid.Row="4" 
                HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Label FontSize="18" FontWeight="Bold" Content="Indkøbs Pris" Grid.Column="1" Grid.Row="6" 
+        
+        <Label FontSize="18" FontWeight="Bold" Content="Indkøbs Pris" Grid.Column="1" Grid.Row="5" 
                HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        
         <Label FontSize="18" FontWeight="Bold" Content="Billede" Grid.Column="3" Grid.Row="5" 
                HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <!-- Textboxes -->
-        <TextBox x:Name="TB_Name" Text="{Binding SelectedFlower.Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="2" 
+        <TextBox x:Name="TB_Name" Text="{Binding SelectedFlower.Name}" Grid.Column="2" Grid.Row="1" 
                  HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="200"/>
-        <TextBox x:Name="TB_SalePrice" Text="{Binding SelectedFlower.SalePrice, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="5" 
+        
+        <TextBox x:Name="TB_SalePrice" Text="{Binding SelectedFlower.SalePrice}" Grid.Column="2" Grid.Row="4" 
                  HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="200"/>
-        <TextBox x:Name="TB_PurchasePrice" Text="{Binding SelectedFlower.PurchasePrice, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="6"  
+        
+        <TextBox x:Name="TB_PurchasePrice" Text="{Binding SelectedFlower.PurchasePrice}" Grid.Column="2" Grid.Row="5"  
                  HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="200"/>
-        <TextBox x:Name="TB_Picture" Text="{Binding SelectedPicture, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="5" 
+        
+        <TextBox x:Name="TB_Picture" Text="{Binding SelectedPicture}" Grid.Column="4" Grid.Row="5" 
                  HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="200" IsEnabled="False"/>
 
         <!-- Combo boxes -->
-        <ComboBox x:Name="CB_FlowerSizes" ItemsSource="{Binding flowerSizes}" SelectedItem="{Binding SelectedFlower.PlantSize}" Grid.Column="2" Grid.Row="3" 
-                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
-        <ComboBox x:Name="CB_FlowerPotSizes" ItemsSource="{Binding flowerPotSizes}" SelectedItem="{Binding SelectedFlower.PotSize}" Grid.Column="2" Grid.Row="4" 
-                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
+        <ComboBox x:Name="CB_FlowerSizes" ItemsSource="{Binding flowerSizes}" SelectedItem="{Binding SelectedFlower.PlantSize}" 
+                  Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
+        
+        <ComboBox x:Name="CB_FlowerPotSizes" ItemsSource="{Binding flowerPotSizes}" SelectedItem="{Binding SelectedFlower.PotSize}" 
+                  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
 
         <!-- Buttons -->
-        <Button Content="Vælg Billed" Command="{Binding SelectImageCommand, UpdateSourceTrigger=PropertyChanged}" Grid.Column="5" Grid.Row="5" 
+        <Button Content="Vælg Billed" Command="{Binding SelectImageCommand}" Grid.Column="5" Grid.Row="5" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="30" FontWeight="Bold"/>
 
-        <Button Content="Opret Produkt" Command="{Binding ForwardCommand}" Grid.Column="5" Grid.Row="6" 
+        <Button Content="Ændr Produkt" Command="{Binding ForwardCommand}" Grid.Column="5" Grid.Row="6" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" FontWeight="Bold" IsDefault="True"/>
 
         <Button Content="Fotryd" Command="{Binding BackwardCommand}" Grid.Column="4" Grid.Row="6" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" FontWeight="Bold"/>
 
         <!-- Image -->
-        <Border Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="3" Width="Auto" Height="Auto" 
+        <Border Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="4" Width="Auto" Height="Auto" 
                 BorderBrush="Black" BorderThickness="2"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
 
-            <Image Name="PictureBox" Source="{Binding SelectedPicture, UpdateSourceTrigger=PropertyChanged}" Stretch="Fill" Width="300" Height="250" 
+            <Image Name="PictureBox" Source="{Binding SelectedPicture}" Stretch="Fill" Width="400" Height="350" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
     </Grid>

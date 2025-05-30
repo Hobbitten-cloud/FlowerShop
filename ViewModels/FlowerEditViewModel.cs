@@ -24,6 +24,7 @@ namespace FlowerShop.ViewModels
     public class FlowerEditViewModel : BaseViewModel, IPictureSelection
     {
         public ICommand SelectImageCommand { get; }
+        public ICommand EditFlowerCommand { get; }
         public ICommand ForwardCommand { get; }
         public ICommand BackwardCommand { get; }
 
@@ -77,13 +78,13 @@ namespace FlowerShop.ViewModels
             _flowerRepo = (FlowerRepo)App.RepoReg.Get<Flower>("FlowerRepo");
             _flowerService = new FlowerService(_flowerRepo);
 
-            var navigate = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
-            ForwardCommand = navigate;
-            BackwardCommand = navigate;
 
             SelectedFlower = flower;
 
-            ForwardCommand = new CommandHandler(() => { EditFlower(); navigate.Execute(null); });
+            EditFlowerCommand = new CommandHandler(() => { EditFlower(); });
+
+            ForwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
+            BackwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
 
             SelectImageCommand = new SelectImageCommand(this);
         }
@@ -94,6 +95,7 @@ namespace FlowerShop.ViewModels
             {
                 _flowerService.Update(SelectedFlower, SelectedPicture);
                 MessageBox.Show("Blomsten er blevet opdateret!", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                ForwardCommand.Execute(null);
             }
             catch (Exception ex)
             {
