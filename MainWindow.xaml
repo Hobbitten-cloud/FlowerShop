@@ -44,6 +44,19 @@
 
                 <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1" Height="Auto">
                     <ContentControl.Resources>
+
+                        <DataTemplate DataType="{x:Type ViewModels:MiscellaneousStorageViewModel}">
+                            <Views:MiscellaneousStorageWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:MiscellaneousCreateViewModel}">
+                            <Views:MiscellaneousCreateWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:MiscellaneousEditViewModel}">
+                            <Views:MiscellaneousEditWindow/>
+                        </DataTemplate>
+
                         <DataTemplate DataType="{x:Type ViewModels:FlowerStorageViewModel}">
                             <Views:FlowerStorageWindow/>
                         </DataTemplate>

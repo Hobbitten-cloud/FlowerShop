@@ -30,7 +30,7 @@ namespace FlowerShop.ViewModels
             ForwardToStartCommand = new NavigateCommand(new NavigationService(navigationStore, () => new StartViewModel(navigationStore)));
             ForwardToFlowerCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
             ForwardToWreathCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
-            ForwardToMiscellaneousCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
+            ForwardToMiscellaneousCommand = new NavigateCommand(new NavigationService(navigationStore, () => new MiscellaneousStorageViewModel(navigationStore)));
             ForwardToNoteCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
         }
 
