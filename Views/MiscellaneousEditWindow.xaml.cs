@@ -18,7 +18,7 @@ namespace FlowerShop.Views
     /// <summary>
     /// Interaction logic for MiscellaneousEditWindow.xaml
     /// </summary>
-    public partial class MiscellaneousEditWindow : Page
+    public partial class MiscellaneousEditWindow : UserControl
     {
         public MiscellaneousEditWindow()
         {

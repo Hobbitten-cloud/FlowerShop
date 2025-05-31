@@ -23,6 +23,5 @@ namespace FlowerShop.Views
         public MiscellaneousCreateWindow()
         {
             InitializeComponent();
-        }
     }
 }

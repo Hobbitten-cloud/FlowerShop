@@ -32,7 +32,6 @@ namespace FlowerShop.ViewModels
             set
             {
                 _selectedMiscellaneous = value;
-                OnPropertyChanged(nameof(SelectedMiscellaneous));
             }
         }
 
