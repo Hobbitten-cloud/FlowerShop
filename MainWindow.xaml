@@ -37,9 +37,15 @@
                     <Button Content="Diverse" FontSize="20" FontFamily="Segoe Print" FontWeight="Bold" 
                         Height="40" Margin="10,0,10,20" Background="DarkGreen" Command="{Binding ForwardToMiscellaneousCommand}"/>
 
+                    <Button Content="Afregning" FontSize="20" FontFamily="Segoe Print" FontWeight="Bold" 
+                        Height="40" Margin="10,0,10,20" Background="DarkGreen" Command="{Binding ForwardToSettlementCommand}"/>
+
                     <Button Content="Noter" FontSize="20" FontFamily="Segoe Print" FontWeight="Bold" 
                         Height="40" Margin="10,0,10,20" Background="DarkGreen" Command="{Binding ForwardToNoteCommand}"/>
-                    
+
+                    <Button Content="Afslut" FontSize="20" FontFamily="Segoe Print" FontWeight="Bold" 
+                        Height="40" Margin="10,0,10,20" Background="DarkRed" Command="{Binding QuitProgramCommand}"/>
+
                 </StackPanel>
 
                 <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1" Height="Auto">

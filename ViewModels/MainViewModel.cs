@@ -16,7 +16,9 @@ namespace FlowerShop.ViewModels
         public ICommand ForwardToFlowerCommand { get; }
         public ICommand ForwardToWreathCommand { get; }
         public ICommand ForwardToMiscellaneousCommand { get; }
+        public ICommand ForwardToSettlementCommand { get; }
         public ICommand ForwardToNoteCommand { get; }
+        public ICommand QuitProgramCommand { get; }
 
         private readonly NavigationStore _navigationStore;
 
@@ -31,7 +33,14 @@ namespace FlowerShop.ViewModels
             ForwardToFlowerCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
             ForwardToWreathCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
             ForwardToMiscellaneousCommand = new NavigateCommand(new NavigationService(navigationStore, () => new MiscellaneousStorageViewModel(navigationStore)));
+            ForwardToSettlementCommand = new NavigateCommand(new NavigationService(navigationStore, () => new MiscellaneousStorageViewModel(navigationStore)));
             ForwardToNoteCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
+            QuitProgramCommand = new CommandHandler(QuitProgram);
+        }
+
+        private void QuitProgram()
+        {
+            Environment.Exit(0);
         }
 
         private void OnCurrentViewModelChanged()

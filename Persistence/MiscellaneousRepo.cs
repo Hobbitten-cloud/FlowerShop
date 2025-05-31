@@ -1,5 +1,4 @@
 ﻿using FlowerShop.Models;
-using FlowerShop.Models.Enums;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -23,113 +22,103 @@ namespace FlowerShop.Persistence
             ConnectionString = config.GetConnectionString("MyDBConnection");
         }
 
-        public void Add(Flower flowerProducts)
+        public void Add(Miscellaneous miscellaneous)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO FlowerProduct (Name, PotSize, PlantSize, SalePrice, PurchasePrice, Picture)" +
-                                                       "VALUES(@Name, @PotSize, @PlantSize, @SalePrice, @PurchasePrice, @Picture)" +
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO Miscellaneous (Name, PurchasePrice, Amount, Picture)" +
+                                                       "VALUES(@Name, @PurchasePrice, @Amount, @Picture)" +
                                                        "SELECT @@IDENTITY", con))
                 {
-                    cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = flowerProducts.Name;
-                    cmd.Parameters.Add("@PotSize", SqlDbType.NVarChar).Value = flowerProducts.PotSize;
-                    cmd.Parameters.Add("@PlantSize", SqlDbType.NVarChar).Value = flowerProducts.PlantSize;
-                    cmd.Parameters.Add("@SalePrice", SqlDbType.Float).Value = flowerProducts.SalePrice;
-                    cmd.Parameters.Add("@PurchasePrice", SqlDbType.Float).Value = flowerProducts.PurchasePrice;
-                    cmd.Parameters.Add("@Picture", SqlDbType.VarBinary).Value = flowerProducts.Picture;
+                    cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = miscellaneous.Name;
+                    cmd.Parameters.Add("@PurchasePrice", SqlDbType.Float).Value = miscellaneous.PurchasePrice;
+                    cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = miscellaneous.Amount;
+                    cmd.Parameters.Add("@Picture", SqlDbType.VarBinary).Value = miscellaneous.Picture;
 
-                    flowerProducts.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    _flowerProducts.Add(flowerProducts);
+                    miscellaneous.Id = Convert.ToInt32(cmd.ExecuteScalar());
+                    _miscellaneousProducts.Add(miscellaneous);
                 }
             }
         }
 
-        public List<Flower> GetAll()
+        public List<Miscellaneous> GetAll()
         {
-            List<Flower> flowerProducts = new List<Flower>();
+            List<Miscellaneous> miscellaneouss = new List<Miscellaneous>();
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT Id, Name, PotSize, PlantSize, SalePrice, PurchasePrice, Picture, IsDeleted FROM FlowerProduct WHERE IsDeleted = 0", con);
+                SqlCommand cmd = new SqlCommand("SELECT Id, Name, PurchasePrice, Amount, Picture FROM Miscellaneous", con);
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        Flower flowerProduct = new Flower
+                        Miscellaneous miscellaneous = new Miscellaneous
                         {
                             Id = dr.GetInt32(0),
                             Name = dr.GetString(1),
-                            PotSize = (FlowerPotSize)Enum.Parse(typeof(FlowerPotSize), dr.GetString(2)),
-                            PlantSize = (FlowerSize)Enum.Parse(typeof(FlowerSize), dr.GetString(3)),
-                            SalePrice = dr.GetDouble(4),
-                            PurchasePrice = dr.GetDouble(5),
-                            Picture = (byte[])dr.GetSqlBinary(6).Value,
-                            IsDeleted = dr.GetBoolean(7)
+                            PurchasePrice = dr.GetDouble(2),
+                            Amount = dr.GetInt32(3),
+                            Picture = (byte[])dr.GetSqlBinary(4).Value
                         };
-                        flowerProducts.Add(flowerProduct);
+                        miscellaneouss.Add(miscellaneous);
                     }
                 }
             }
-            return flowerProducts;
+            return miscellaneouss;
         }
 
-        public Flower? GetById(int id)
+        public Miscellaneous? GetById(int id)
         {
-            Flower? flowerProduct = null;
+            Miscellaneous? miscellaneouss = null;
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT Id, Name, PotSize, PlantSize, SalePrice, PurchasePrice, Picture, IsDeleted FROM FlowerProduct WHERE Id = @Id", con);
+                SqlCommand cmd = new SqlCommand("SELECT Id, Name, PurchasePrice, Amount, Picture FROM Miscellaneous WHERE Id = @Id", con);
                 cmd.Parameters.AddWithValue("@Id", id);
 
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     if (dr.Read())
                     {
-                        flowerProduct = new Flower
+                        miscellaneouss = new Miscellaneous
                         {
                             Id = dr.GetInt32(0),
                             Name = dr.GetString(1),
-                            PotSize = (FlowerPotSize)Enum.Parse(typeof(FlowerPotSize), dr.GetString(2)),
-                            PlantSize = (FlowerSize)Enum.Parse(typeof(FlowerSize), dr.GetString(3)),
-                            SalePrice = dr.GetDouble(4),
-                            PurchasePrice = dr.GetDouble(5),
-                            Picture = (byte[])dr.GetSqlBinary(6).Value,
-                            IsDeleted = dr.GetBoolean(7)
+                            PurchasePrice = dr.GetDouble(2),
+                            Amount = dr.GetInt32(3),
+                            Picture = (byte[])dr.GetSqlBinary(4).Value
                         };
                     }
                 }
             }
-            return flowerProduct;
+            return miscellaneouss;
         }
 
-        public void Remove(Flower flowerProduct)
+        public void Remove(Miscellaneous miscellaneous)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE FlowerProduct SET IsDeleted = 1 WHERE Id = @Id", con);
-                cmd.Parameters.AddWithValue("@Id", flowerProduct.Id);
+                SqlCommand cmd = new SqlCommand("DELETE FROM Miscellaneous WHERE Id = @Id", con);
+                cmd.Parameters.AddWithValue("@Id", miscellaneous.Id);
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public void Update(Flower flowerProducts)
+        public void Update(Miscellaneous miscellaneous)
         {
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE FlowerProduct SET Name = @Name, PotSize = @PotSize, " +
-                    "PlantSize = @PlantSize, SalePrice = @SalePrice, PurchasePrice = @PurchasePrice, Picture = @Picture WHERE Id = @Id", con);
+                SqlCommand cmd = new SqlCommand("UPDATE Miscellaneous SET Name = @Name, PurchasePrice = @PurchasePrice, " +
+                    "Amount = @Amount, Picture = @Picture WHERE Id = @Id", con);
 
-                cmd.Parameters.Add("@Id", SqlDbType.NVarChar).Value = flowerProducts.Id;
-                cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = flowerProducts.Name;
-                cmd.Parameters.Add("@PotSize", SqlDbType.NVarChar).Value = flowerProducts.PotSize;
-                cmd.Parameters.Add("@PlantSize", SqlDbType.NVarChar).Value = flowerProducts.PlantSize;
-                cmd.Parameters.Add("@SalePrice", SqlDbType.Float).Value = flowerProducts.SalePrice;
-                cmd.Parameters.Add("@PurchasePrice", SqlDbType.Float).Value = flowerProducts.PurchasePrice;
-                cmd.Parameters.Add("@Picture", SqlDbType.VarBinary).Value = flowerProducts.Picture;
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = miscellaneous.Id;
+                cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = miscellaneous.Name;
+                cmd.Parameters.Add("@PurchasePrice", SqlDbType.Float).Value = miscellaneous.PurchasePrice;
+                cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = miscellaneous.Amount;
+                cmd.Parameters.Add("@Picture", SqlDbType.VarBinary).Value = miscellaneous.Picture;
                 cmd.ExecuteNonQuery();
             }
         }

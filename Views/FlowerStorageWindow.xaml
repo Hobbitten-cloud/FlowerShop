@@ -41,10 +41,10 @@
                     <GridViewColumn Header="Navn" Width="220" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Salgs Pris" Width="100" DisplayMemberBinding="{Binding SalePrice}"/>
                     <GridViewColumn Header="Indkøbs Pris" Width="100" DisplayMemberBinding="{Binding PurchasePrice}"/>
-                    <GridViewColumn Header="Billede" Width="200">
+                    <GridViewColumn Header="Billede" Width="160">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Picture}" Width="200" Height="200"/>
+                                <Image Source="{Binding Picture}" Width="150" Height="100"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
