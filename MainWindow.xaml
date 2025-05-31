@@ -98,6 +98,30 @@
                             <Views:StartWindow/>
                         </DataTemplate>
 
+                        <DataTemplate DataType="{x:Type ViewModels:WreathStorageViewModel}">
+                            <Views:WreathStorageWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:WreathEditViewModel}">
+                            <Views:WreathEditWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:WreathCreateViewModel}">
+                            <Views:WreathCreateWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:NoteStorageViewModel}">
+                            <Views:NoteStorageWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:NoteEditViewModel}">
+                            <Views:NoteEditWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:NoteCreateViewModel}">
+                            <Views:NoteCreateWindow/>
+                        </DataTemplate>
+
                         <Style TargetType="Button">
                             <Style.Resources>
                                 <Style TargetType="Border">
