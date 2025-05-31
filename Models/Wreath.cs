@@ -9,12 +9,14 @@ namespace FlowerShop.Models
 {
     public class Wreath
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public double PurchasePrice { get; set; }
         public double SalePrice { get; set; }
         public WreathSize Size { get; set; }
         public int Amount { get; set; }
         public byte[] picture { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Wreath()
         {

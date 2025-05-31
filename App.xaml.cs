@@ -24,6 +24,8 @@ namespace FlowerShop
             // Repository registrations
             RepoReg.Register<Flower>("FlowerRepo", new FlowerRepo());
             RepoReg.Register<Miscellaneous>("MiscellaneousRepo", new MiscellaneousRepo());
+            RepoReg.Register<Note>("NoteRepo", new NoteRepo());
+            RepoReg.Register<Wreath>("WreathRepo", new WreathRepo());
 
             // Initialize the navigation store and set the initial view model
             NavigationStore navigationStore = new NavigationStore();

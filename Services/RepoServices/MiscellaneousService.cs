@@ -23,27 +23,17 @@ namespace FlowerShop.Services.RepoServices
         {
             if (string.IsNullOrWhiteSpace(miscellaneous.Name))
             {
-                throw new Exception("Blomsternavn er påkrævet.");
+                throw new Exception("Navn er påkrævet.");
             }
-
-            //if (miscellaneous.PotSize == FlowerPotSize.None)
-            //{
-            //    throw new Exception("Blomsterkrukke størrelse er påkrævet.");
-            //}
-
-            //if (miscellaneous.PlantSize == FlowerSize.None)
-            //{
-            //    throw new Exception("Blomst størrelse er påkrævet.");
-            //}
-
-            //if (miscellaneous.SalePrice <= 0)
-            //{
-            //    throw new Exception("Salgspris skal være større end 0.");
-            //}
 
             if (miscellaneous.PurchasePrice <= 0)
             {
                 throw new Exception("Indkøbspris skal være større end 0.");
+            }
+
+            if (miscellaneous.Amount <= 0)
+            {
+                throw new Exception("Antal skal være større end 0.");
             }
 
             if (!string.IsNullOrEmpty(image))
@@ -58,7 +48,7 @@ namespace FlowerShop.Services.RepoServices
 
             if (miscellaneous.Picture == null || miscellaneous.Picture.Length == 0)
             {
-                throw new Exception("Billede af bilen er påkrævet.");
+                throw new Exception("Billede er påkrævet.");
             }
 
             _miscellaneousRepo.Add(miscellaneous);
@@ -68,27 +58,17 @@ namespace FlowerShop.Services.RepoServices
         {
             if (string.IsNullOrWhiteSpace(miscellaneous.Name))
             {
-                throw new Exception("Blomsternavn er påkrævet.");
+                throw new Exception("Navn er påkrævet.");
             }
-
-            //if (miscellaneous.PotSize == FlowerPotSize.None)
-            //{
-            //    throw new Exception("Blomsterkrukke størrelse er påkrævet.");
-            //}
-
-            //if (miscellaneous.PlantSize == FlowerSize.None)
-            //{
-            //    throw new Exception("Blomst størrelse er påkrævet.");
-            //}
-
-            //if (miscellaneous.SalePrice <= 0)
-            //{
-            //    throw new Exception("Salgspris skal være større end 0.");
-            //}
 
             if (miscellaneous.PurchasePrice <= 0)
             {
                 throw new Exception("Indkøbspris skal være større end 0.");
+            }
+
+            if (miscellaneous.Amount <= 0)
+            {
+                throw new Exception("Antal skal være større end 0.");
             }
 
             if (!string.IsNullOrEmpty(image))
@@ -103,7 +83,7 @@ namespace FlowerShop.Services.RepoServices
 
             if (miscellaneous.Picture == null || miscellaneous.Picture.Length == 0)
             {
-                throw new Exception("Billede af bilen er påkrævet.");
+                throw new Exception("Billede er påkrævet.");
             }
 
             _miscellaneousRepo.Update(miscellaneous);
@@ -113,14 +93,14 @@ namespace FlowerShop.Services.RepoServices
         {
             if (miscellaneous == null)
             {
-                throw new Exception("Du skal vælge en ting først for at slette.");
+                throw new Exception("Du skal vælge en vare først for at slette.");
             }
 
             var existingMiscellaneous = _miscellaneousRepo.GetById(miscellaneous.Id);
 
             if (existingMiscellaneous == null)
             {
-                throw new Exception("Tingen blev ikke fundet i databasen.");
+                throw new Exception("Varen blev ikke fundet i databasen.");
             }
 
             _miscellaneousRepo.Remove(existingMiscellaneous);
