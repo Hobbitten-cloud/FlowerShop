@@ -1,6 +1,7 @@
 ﻿using FlowerShop.Services;
 using FlowerShop.Stores;
 using FlowerShop.ViewModels.Commands;
+using FlowerShop.ViewModels.TestViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +32,10 @@ namespace FlowerShop.ViewModels
 
             ForwardToStartCommand = new NavigateCommand(new NavigationService(navigationStore, () => new StartViewModel(navigationStore)));
             ForwardToFlowerCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
-            ForwardToWreathCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
+            ForwardToWreathCommand = new NavigateCommand(new NavigationService(navigationStore, () => new TestViewModel(navigationStore)));
             ForwardToMiscellaneousCommand = new NavigateCommand(new NavigationService(navigationStore, () => new MiscellaneousStorageViewModel(navigationStore)));
-            ForwardToSettlementCommand = new NavigateCommand(new NavigationService(navigationStore, () => new MiscellaneousStorageViewModel(navigationStore)));
-            ForwardToNoteCommand = new NavigateCommand(new NavigationService(navigationStore, () => new FlowerStorageViewModel(navigationStore)));
+            ForwardToSettlementCommand = new NavigateCommand(new NavigationService(navigationStore, () => new TestViewModel(navigationStore)));
+            ForwardToNoteCommand = new NavigateCommand(new NavigationService(navigationStore, () => new TestViewModel(navigationStore)));
             QuitProgramCommand = new CommandHandler(QuitProgram);
         }
 

@@ -6,6 +6,8 @@
        xmlns:local="clr-namespace:FlowerShop"
        xmlns:ViewModels="clr-namespace:FlowerShop.ViewModels"
        xmlns:Views="clr-namespace:FlowerShop.Views"
+       xmlns:ViewsTestViews="clr-namespace:FlowerShop.Views.TestViews"
+       xmlns:ViewModelsTestViews="clr-namespace:FlowerShop.ViewModels.TestViewModels"
        mc:Ignorable="d"
        Title="MainWindow" Height="600" Width="1000" WindowStartupLocation="CenterScreen" Background="DarkGreen">
     <Viewbox Stretch="Fill">
@@ -50,6 +52,9 @@
 
                 <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1" Height="Auto">
                     <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type ViewModelsTestViews:TestViewModel}">
+                            <ViewsTestViews:TestView/>
+                        </DataTemplate>
 
                         <DataTemplate DataType="{x:Type ViewModels:MiscellaneousStorageViewModel}">
                             <Views:MiscellaneousStorageWindow/>
