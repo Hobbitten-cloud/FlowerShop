@@ -53,10 +53,10 @@ namespace FlowerShop.Services.RepoServices
                     throw new FileNotFoundException("Den angivne billedfil blev ikke fundet.", image);
                 }
 
-                wreath.picture = File.ReadAllBytes(image);
+                wreath.Picture = File.ReadAllBytes(image);
             }
 
-            if (wreath.picture == null || wreath.picture.Length == 0)
+            if (wreath.Picture == null || wreath.Picture.Length == 0)
             {
                 throw new Exception("Billede er påkrævet.");
             }
@@ -98,10 +98,10 @@ namespace FlowerShop.Services.RepoServices
                     throw new FileNotFoundException("Den angivne billedfil blev ikke fundet.", image);
                 }
 
-                wreath.picture = File.ReadAllBytes(image);
+                wreath.Picture = File.ReadAllBytes(image);
             }
 
-            if (wreath.picture == null || wreath.picture.Length == 0)
+            if (wreath.Picture == null || wreath.Picture.Length == 0)
             {
                 throw new Exception("Billede er påkrævet.");
             }

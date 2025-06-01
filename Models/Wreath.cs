@@ -15,7 +15,7 @@ namespace FlowerShop.Models
         public double SalePrice { get; set; }
         public WreathSize Size { get; set; }
         public int Amount { get; set; }
-        public byte[] picture { get; set; }
+        public byte[] Picture { get; set; }
         public bool IsDeleted { get; set; } = false;
 
         public Wreath()
@@ -30,7 +30,7 @@ namespace FlowerShop.Models
             SalePrice = salePrice;
             Size = size;
             Amount = amount;
-            this.picture = picture;
+            Picture = picture;
         }
     }
 }

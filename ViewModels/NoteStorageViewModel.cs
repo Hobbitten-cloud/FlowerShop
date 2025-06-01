@@ -32,6 +32,7 @@ namespace FlowerShop.ViewModels
             set
             {
                 _selectedNote = value;
+                OnPropertyChanged(nameof(SelectedNote));
             }
         }
 

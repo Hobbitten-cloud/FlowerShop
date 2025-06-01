@@ -37,7 +37,7 @@ namespace FlowerShop.Persistence
                     cmd.Parameters.Add("@SalePrice", SqlDbType.Float).Value = wreath.SalePrice;
                     cmd.Parameters.Add("@Size", SqlDbType.NVarChar).Value = wreath.Size;
                     cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = wreath.Amount;
-                    cmd.Parameters.Add("@Picture", SqlDbType.VarBinary).Value = wreath.picture;
+                    cmd.Parameters.Add("@Picture", SqlDbType.VarBinary).Value = wreath.Picture;
 
                     wreath.Id = Convert.ToInt32(cmd.ExecuteScalar());
                     _wreaths.Add(wreath);
@@ -64,7 +64,7 @@ namespace FlowerShop.Persistence
                             SalePrice = dr.GetDouble(3),
                             Size = (WreathSize)Enum.Parse(typeof(WreathSize), dr.GetString(4)),
                             Amount = dr.GetInt32(5),
-                            picture = (byte[])dr.GetSqlBinary(6).Value
+                            Picture = (byte[])dr.GetSqlBinary(6).Value
                         };
                         wreaths.Add(wreath);
                     }
@@ -94,7 +94,7 @@ namespace FlowerShop.Persistence
                             SalePrice = dr.GetDouble(3),
                             Size = (WreathSize)Enum.Parse(typeof(WreathSize), dr.GetString(4)),
                             Amount = dr.GetInt32(5),
-                            picture = (byte[])dr.GetSqlBinary(6).Value
+                            Picture = (byte[])dr.GetSqlBinary(6).Value
                         };
                     }
                 }
@@ -119,7 +119,7 @@ namespace FlowerShop.Persistence
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE Wreath SET Name = @Name, PurchasePrice = @PurchasePrice, " +
-                    "SalePrice = @SalePrice, Size = @Size, Amount = @Amount, Picture = @Picture WHERE Id = @Id", con);
+                                                "SalePrice = @SalePrice, Size = @Size, Amount = @Amount, Picture = @Picture WHERE Id = @Id", con);
 
                 cmd.Parameters.Add("@Id", SqlDbType.Int).Value = wreath.Id;
                 cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = wreath.Name;
@@ -127,7 +127,7 @@ namespace FlowerShop.Persistence
                 cmd.Parameters.Add("@SalePrice", SqlDbType.Float).Value = wreath.SalePrice;
                 cmd.Parameters.Add("@Size", SqlDbType.NVarChar).Value = wreath.Size;
                 cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = wreath.Amount;
-                cmd.Parameters.Add("@Picture", SqlDbType.VarBinary).Value = wreath.picture;
+                cmd.Parameters.Add("@Picture", SqlDbType.VarBinary).Value = wreath.Picture;
                 cmd.ExecuteNonQuery();
             }
         }

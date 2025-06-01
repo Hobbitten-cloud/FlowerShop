@@ -20,7 +20,7 @@ namespace FlowerShop.ViewModels
         public ICommand SelectImageCommand { get; }
         public ICommand ForwardCommand { get; }
         public ICommand BackwardCommand { get; }
-        public ICommand UpdateNoteCommand { get; }
+        public ICommand EditNoteCommand { get; }
 
         private string _selectedPicture;
         public string SelectedPicture
@@ -58,7 +58,7 @@ namespace FlowerShop.ViewModels
 
             SelectedNote = note;
 
-            UpdateNoteCommand = new CommandHandler(() => { EditNote(); });
+            EditNoteCommand = new CommandHandler(() => { EditNote(); });
             ForwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new NoteStorageViewModel(navigationStore)));
             BackwardCommand = new NavigateCommand(new NavigationService(navigationStore, () => new NoteStorageViewModel(navigationStore)));
 

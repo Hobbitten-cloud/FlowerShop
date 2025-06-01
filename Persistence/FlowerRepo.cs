@@ -123,7 +123,7 @@ namespace FlowerShop.Persistence
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE Flower SET Name = @Name, PotSize = @PotSize, " +
-                    "PlantSize = @PlantSize, SalePrice = @SalePrice, PurchasePrice = @PurchasePrice, Picture = @Picture WHERE Id = @Id", con);
+                                                "PlantSize = @PlantSize, SalePrice = @SalePrice, PurchasePrice = @PurchasePrice, Picture = @Picture WHERE Id = @Id", con);
 
                 cmd.Parameters.Add("@Id", SqlDbType.NVarChar).Value = flower.Id;
                 cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = flower.Name;
