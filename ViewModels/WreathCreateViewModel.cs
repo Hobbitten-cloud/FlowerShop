@@ -1,4 +1,5 @@
 ﻿using FlowerShop.Models;
+using FlowerShop.Models.Enums;
 using FlowerShop.Persistence;
 using FlowerShop.Persistence.Interfaces;
 using FlowerShop.Services;
@@ -47,6 +48,13 @@ namespace FlowerShop.ViewModels
                 _selectedWreath = value; OnPropertyChanged();
             }
         }
+
+        public List<WreathSize> wreathSizes { get; } = new List<WreathSize>()
+        {
+            WreathSize.Size27_1, WreathSize.Size27_2, WreathSize.Size27_3,
+            WreathSize.Size28_1, WreathSize.Size28_2, WreathSize.Size28_3,
+            WreathSize.Size29_1, WreathSize.Size29_2, WreathSize.Size29_3
+        };
 
         private IRepo<Wreath> _wreathRepo;
         private readonly WreathService _wreathService;
