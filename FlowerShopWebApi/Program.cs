@@ -7,45 +7,37 @@ namespace FlowerShopWebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddAuthorization();
-
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
+            // add services to the container.
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
-            var summaries = new[]
+            // Routing
+            app.MapGet("/flower", () =>
             {
-                "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            };
+                return "Reading all flowers";
+            });
 
-            app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+            app.MapPost("/flower", () =>
             {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast
-                    {
-                        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                        TemperatureC = Random.Shared.Next(-20, 55),
-                        Summary = summaries[Random.Shared.Next(summaries.Length)]
-                    })
-                    .ToArray();
-                return forecast;
-            })
-            .WithName("GetWeatherForecast")
-            .WithOpenApi();
+                return "Creating a new flower";
+            });
+
+            app.MapGet("/flower/{id}", (int id) =>
+            {
+                return $"Reading flower with ID: {id}";
+            });
+
+            app.MapPut("/flower/{id}", (int id) =>
+            {
+                return $"Updating flower with ID: {id}";
+            });
+
+            app.MapDelete("/flower/{id}", (int id) =>
+            {
+                return $"Deleting flower with ID: {id}";
+            });
 
             app.Run();
         }
