@@ -1,0 +1,1 @@
+The 2 scripts are purely test information and to make the program works

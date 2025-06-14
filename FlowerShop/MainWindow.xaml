@@ -1,0 +1,138 @@
+﻿<Window x:Class="FlowerShop.MainWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:local="clr-namespace:FlowerShop"
+       xmlns:ViewModels="clr-namespace:FlowerShop.ViewModels"
+       xmlns:Views="clr-namespace:FlowerShop.Views"
+       xmlns:ViewsTestViews="clr-namespace:FlowerShop.Views.TestViews"
+       xmlns:ViewModelsTestViews="clr-namespace:FlowerShop.ViewModels.TestViewModels"
+       mc:Ignorable="d"
+       Title="MainWindow" Height="600" Width="1000" WindowStartupLocation="CenterScreen" Background="DarkGreen">
+    <Viewbox Stretch="Fill">
+        <Border Padding="10">
+            <Grid Height="600" Width="1000">
+                <Grid.Background>
+                    <ImageBrush ImageSource="\models\ressources\LersBlomsterLogo.png" Opacity="0.30"/>
+                </Grid.Background>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ContentControl>
+                    <ContentControl.Resources>
+
+                        <Style TargetType="Button">
+                            <Style.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                </Style>
+                            </Style.Resources>
+                        </Style>
+                    </ContentControl.Resources>
+
+                    <StackPanel Background="#272727">
+                        <Button Content="Start" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" Background="#7D9B67"
+                        Height="40" Margin="10,20,10,20" Command="{Binding ForwardToStartCommand}"/>
+
+                        <Button Content="Blomster" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" Background="#7D9B67"
+                        Height="40" Margin="10,0,10,20" Command="{Binding ForwardToFlowerCommand}"/>
+
+                        <Button Content="Kranser" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" Background="#7D9B67"
+                        Height="40" Margin="10,0,10,20" Command="{Binding ForwardToWreathCommand}"/>
+
+                        <Button Content="Diverse" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" Background="#7D9B67"
+                        Height="40" Margin="10,0,10,20" Command="{Binding ForwardToMiscellaneousCommand}"/>
+
+                        <Button Content="Afregning" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" Background="#7D9B67"
+                        Height="40" Margin="10,0,10,20" Command="{Binding ForwardToSettlementCommand}"/>
+
+                        <Button Content="Noter" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" Background="#7D9B67"
+                        Height="40" Margin="10,0,10,20" Command="{Binding ForwardToNoteCommand}"/>
+
+                        <Button Content="Afslut" FontSize="20" FontFamily="Times New Roman" FontWeight="Bold" Background="DarkRed" 
+                        Height="40" Margin="10,0,10,20" Command="{Binding QuitProgramCommand}"/>
+
+                    </StackPanel>
+                </ContentControl>
+
+                <ContentControl Content="{Binding CurrentViewModel}" Grid.Column="1" Height="Auto">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type ViewModelsTestViews:TestViewModel}">
+                            <ViewsTestViews:TestView/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:MiscellaneousStorageViewModel}">
+                            <Views:MiscellaneousStorageWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:MiscellaneousCreateViewModel}">
+                            <Views:MiscellaneousCreateWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:MiscellaneousEditViewModel}">
+                            <Views:MiscellaneousEditWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:FlowerStorageViewModel}">
+                            <Views:FlowerStorageWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:FlowerEditViewModel}">
+                            <Views:FlowerEditWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:FlowerCreateViewModel}">
+                            <Views:FlowerCreateWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:StartViewModel}">
+                            <Views:StartWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:WreathStorageViewModel}">
+                            <Views:WreathStorageWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:WreathEditViewModel}">
+                            <Views:WreathEditWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:WreathCreateViewModel}">
+                            <Views:WreathCreateWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:NoteStorageViewModel}">
+                            <Views:NoteStorageWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:NoteEditViewModel}">
+                            <Views:NoteEditWindow/>
+                        </DataTemplate>
+
+                        <DataTemplate DataType="{x:Type ViewModels:NoteCreateViewModel}">
+                            <Views:NoteCreateWindow/>
+                        </DataTemplate>
+
+                        <Style TargetType="Button">
+                            <Style.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Style.Resources>
+                        </Style>
+
+                    </ContentControl.Resources>
+                </ContentControl>
+            </Grid>
+        </Border>
+    </Viewbox>
+</Window>
